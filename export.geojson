@@ -1,0 +1,1669 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-05-06T06:03:26Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/82695740",
+        "building": "yes",
+        "craft": "plumber",
+        "name": "Sabbatini Plumbing",
+        "phone": "+1-831-637-8826",
+        "source": "Yahoo",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3997227,
+          36.848017
+        ]
+      },
+      "id": "way/82695740"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/202352423",
+        "addr:city": "San Jose",
+        "addr:housenumber": "1639",
+        "addr:postcode": "95125",
+        "addr:state": "CA",
+        "addr:street": "Almaden Road",
+        "building": "yes",
+        "craft": "plumber",
+        "ele": "45.46",
+        "height": "6.51",
+        "name": "Burr Plumbing and Pumping",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8790579,
+          37.3063274
+        ]
+      },
+      "id": "way/202352423"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/219783369",
+        "addr:city": "San Francisco",
+        "addr:housenumber": "1090",
+        "addr:postcode": "94103",
+        "addr:street": "Bryant Street",
+        "building": "commercial",
+        "check_date": "2026-03-28",
+        "craft": "plumber",
+        "height": "9",
+        "name": "Ace Plumbing and Rooter, Inc",
+        "source": "Bing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.4085511,
+          37.7716323
+        ]
+      },
+      "id": "way/219783369"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/220913607",
+        "addr:city": "San Jose",
+        "addr:housenumber": "1020",
+        "addr:postcode": "95110",
+        "addr:street": "Ruff Drive",
+        "building": "yes",
+        "craft": "plumber",
+        "ele": "24.31",
+        "height": "5.81",
+        "name": "Able Underground Construction",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9132343,
+          37.3517658
+        ]
+      },
+      "id": "way/220913607"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/228344090",
+        "addr:city": "San Martin",
+        "addr:housenumber": "13245",
+        "addr:postcode": "95046",
+        "addr:state": "CA",
+        "addr:street": "Monterey Road",
+        "building": "yes",
+        "craft": "plumber",
+        "name": "A.L. Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.6102683,
+          37.084195
+        ]
+      },
+      "id": "way/228344090"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/229833233",
+        "addr:city": "San Jose",
+        "addr:housenumber": "1150",
+        "addr:postcode": "95126",
+        "addr:street": "West San Carlos Street",
+        "building": "industrial",
+        "craft": "plumber",
+        "ele": "42.32",
+        "height": "9.01",
+        "old_name": "D.C. McDonald",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9091969,
+          37.3231469
+        ]
+      },
+      "id": "way/229833233"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/238292997",
+        "addr:city": "Eureka",
+        "addr:country": "US",
+        "addr:housenumber": "77",
+        "addr:postcode": "95501",
+        "addr:state": "CA",
+        "addr:street": "West 3rd Street",
+        "building": "yes",
+        "craft": "plumber",
+        "name": "Tom Genter Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -124.1734762,
+          40.8024485
+        ]
+      },
+      "id": "way/238292997"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/277497552",
+        "addr:city": "Big Bear Lake",
+        "addr:housenumber": "42163",
+        "addr:street": "Big Bear Boulevard",
+        "building": "retail",
+        "craft": "plumber",
+        "name": "Big Bear Sheet Metal",
+        "source": "survey,Bing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.883492,
+          34.2508238
+        ]
+      },
+      "id": "way/277497552"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/311695402",
+        "addr:city": "Atwater",
+        "addr:housenumber": "2145",
+        "addr:postcode": "95301",
+        "addr:street": "Atwater Boulevard",
+        "building": "commercial",
+        "craft": "plumber",
+        "name": "B & B Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.6195695,
+          37.3497539
+        ]
+      },
+      "id": "way/311695402"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/311711071",
+        "addr:city": "Atwater",
+        "addr:housenumber": "790",
+        "addr:postcode": "95301",
+        "addr:street": "Enterprise Court",
+        "building": "industrial",
+        "craft": "plumber",
+        "name": "Jims Plumbing Inc",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.6000736,
+          37.3373791
+        ]
+      },
+      "id": "way/311711071"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/311711084",
+        "addr:city": "Merced",
+        "addr:housenumber": "2190",
+        "addr:postcode": "95341",
+        "addr:street": "East Yosemite PKWY",
+        "building": "commercial",
+        "craft": "plumber",
+        "name": "Johnson Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.448887,
+          37.2948755
+        ]
+      },
+      "id": "way/311711084"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/311711085",
+        "addr:city": "Merced",
+        "addr:housenumber": "2178",
+        "addr:postcode": "95341",
+        "addr:street": "East Yosemite PKWY",
+        "building": "commercial",
+        "craft": "plumber",
+        "name": "Johnson Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.4492366,
+          37.2947734
+        ]
+      },
+      "id": "way/311711085"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/311711586",
+        "addr:city": "Gustine",
+        "addr:housenumber": "355",
+        "addr:postcode": "95322",
+        "addr:street": "Hwy 33",
+        "building": "commercial",
+        "craft": "plumber",
+        "name": "Phil's Plumbing Services",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.9988652,
+          37.2568325
+        ]
+      },
+      "id": "way/311711586"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/311716863",
+        "addr:city": "Atwater",
+        "building": "industrial",
+        "craft": "plumber",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.6002213,
+          37.3371493
+        ]
+      },
+      "id": "way/311716863"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/311721116",
+        "addr:city": "Atwater",
+        "building": "industrial",
+        "craft": "plumber",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.6001806,
+          37.3377707
+        ]
+      },
+      "id": "way/311721116"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/369712501",
+        "building": "retail",
+        "craft": "plumber",
+        "ele": "369.0",
+        "lacounty:ain": "5615001023",
+        "lacounty:bld_id": "GLEN58632",
+        "name": "Charles H. Sanford Plumber",
+        "start_date": "1926",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.2264267,
+          34.2041025
+        ]
+      },
+      "id": "way/369712501"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/371622217",
+        "addr:city": "San Jose",
+        "addr:housenumber": "940",
+        "addr:postcode": "95110",
+        "addr:state": "CA",
+        "addr:street": "South 1st Street",
+        "building": "yes",
+        "craft": "plumber",
+        "ele": "39.72",
+        "height": "6.99",
+        "name": "Bruce Barton Pump Service",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8792938,
+          37.3221683
+        ]
+      },
+      "id": "way/371622217"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/386284416",
+        "addr:housenumber": "1121",
+        "addr:street": "Bayswater Avenue",
+        "building": "industrial",
+        "craft": "plumber",
+        "name": "Lindstrom Co.",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.3309857,
+          37.585409
+        ]
+      },
+      "id": "way/386284416"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/389715442",
+        "building": "yes",
+        "craft": "plumber",
+        "name": "Smelly Mel's Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.4068973,
+          37.6405861
+        ]
+      },
+      "id": "way/389715442"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/438223845",
+        "addr:city": "Avalon",
+        "addr:housenumber": "422",
+        "addr:postcode": "90704",
+        "addr:street": "Falls Canyon Road",
+        "building": "yes",
+        "craft": "plumber",
+        "ele": "61.3",
+        "height": "3.1",
+        "lacounty:ain": "7480001026",
+        "lacounty:bld_id": "459227582650",
+        "name": "Jones Plumbing",
+        "phone": "+1-310-510-1518",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.3353474,
+          33.3408048
+        ]
+      },
+      "id": "way/438223845"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/495830037",
+        "building": "industrial",
+        "craft": "plumber",
+        "name": "Hitt Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.1773405,
+          34.4990575
+        ]
+      },
+      "id": "way/495830037"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/557557697",
+        "addr:housenumber": "1025",
+        "addr:state": "CA",
+        "addr:street": "North Dutton Avenue",
+        "alt_name": "Mister Rooter",
+        "brand": "Mr. Rooter",
+        "brand:wikidata": "Q6929145",
+        "building": "office",
+        "craft": "plumber",
+        "name": "Mr. Rooter",
+        "official_name": "Mr. Rooter Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.730285,
+          38.4431528
+        ]
+      },
+      "id": "way/557557697"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/596371300",
+        "addr:city": "Santee",
+        "addr:country": "US",
+        "addr:housenumber": "10555",
+        "addr:postcode": "92071",
+        "addr:state": "CA",
+        "addr:street": "Prospect Avenue",
+        "craft": "plumber",
+        "name": "Mann Plumbing",
+        "source": "SanGIS Addresses Public Domain (http://www.sangis.org/)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.967687,
+          32.830852
+        ]
+      },
+      "id": "node/596371300"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/622956490",
+        "building": "yes",
+        "craft": "plumber",
+        "name": "Wilson's Plumbing and Heating",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9177542,
+          36.6191333
+        ]
+      },
+      "id": "way/622956490"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/671007850",
+        "building": "yes",
+        "craft": "plumber",
+        "name": "Roto-Rooter",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.2991679,
+          34.5417577
+        ]
+      },
+      "id": "way/671007850"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/839531103",
+        "addr:city": "San Jose",
+        "addr:housenumber": "166",
+        "addr:postcode": "95110",
+        "addr:state": "CA",
+        "addr:street": "Graham Avenue",
+        "building": "commercial",
+        "craft": "plumber",
+        "ele": "35.20",
+        "height": "2.57",
+        "name": "15 Dollar Sewer & Drain Service",
+        "operator": "The Great American Plumbing Companies Inc",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8814655,
+          37.3188398
+        ]
+      },
+      "id": "way/839531103"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/878778158",
+        "addr:city": "San Jose",
+        "addr:housenumber": "2912",
+        "addr:postcode": "95111",
+        "addr:state": "CA",
+        "addr:street": "Daylight Way",
+        "building": "yes",
+        "craft": "plumber",
+        "ele": "48.68",
+        "height": "2.82",
+        "name": "R.P.S. Ribbs Premier Services",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8493931,
+          37.2897098
+        ]
+      },
+      "id": "way/878778158"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1060902073",
+        "addr:city": "Victorville",
+        "addr:housenumber": "14160",
+        "addr:postcode": "92395",
+        "addr:state": "CA",
+        "addr:street": "Hesperia Road",
+        "building": "commercial",
+        "building:levels": "1",
+        "craft": "plumber",
+        "name": "Beaman Brothers",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.297347,
+          34.5082284
+        ]
+      },
+      "id": "way/1060902073"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1064747320",
+        "building": "yes",
+        "craft": "plumber",
+        "name": "AAVCO Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.4355392,
+          34.1146885
+        ]
+      },
+      "id": "way/1064747320"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1099741577",
+        "addr:city": "El Cajon",
+        "addr:country": "US",
+        "addr:housenumber": "9423",
+        "addr:postcode": "92021",
+        "addr:state": "CA",
+        "addr:street": "Bond Avenue",
+        "building": "yes",
+        "building:levels": "2",
+        "craft": "plumber",
+        "name": "Advance Plumbing CO.",
+        "source": "SanGIS Addresses Public Domain (http://www.sangis.org/)",
+        "trade": "plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.8692738,
+          32.8494909
+        ]
+      },
+      "id": "way/1099741577"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1188534026",
+        "craft": "plumber",
+        "landuse": "commercial",
+        "name": "Rooter Man Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.4827006,
+          34.3207186
+        ]
+      },
+      "id": "way/1188534026"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1276574268",
+        "addr:city": "Banning",
+        "addr:housenumber": "4151",
+        "addr:postcode": "92220",
+        "addr:state": "CA",
+        "addr:street": "Ramsey Street",
+        "building": "yes",
+        "craft": "plumber",
+        "name": "Easy Rooter Plumbing and Drain Cleaning",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.922455,
+          33.9272932
+        ]
+      },
+      "id": "way/1276574268"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1340649708",
+        "building": "yes",
+        "craft": "plumber",
+        "name": "S&S Plumbing",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.9115805,
+          39.9495587
+        ]
+      },
+      "id": "way/1340649708"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1486432908",
+        "addr:city": "El Cajon",
+        "addr:housenumber": "1483",
+        "addr:postcode": "92021",
+        "addr:street": "North 2nd Street",
+        "building": "yes",
+        "craft": "plumber",
+        "name": "Cable Pipe & Leak Detection",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.9354629,
+          32.8152178
+        ]
+      },
+      "id": "way/1486432908"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2763779463",
+        "addr:city": "San Francisco",
+        "addr:country": "US",
+        "addr:housenumber": "260",
+        "addr:postcode": "94102",
+        "addr:state": "CA",
+        "addr:street": "Linden Street",
+        "craft": "plumber",
+        "name": "DeJager and Reilly Plumbing",
+        "shop": "trade",
+        "source": "Note 49021",
+        "trade": "plumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.4223729,
+          37.7765425
+        ]
+      },
+      "id": "node/2763779463"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3960923726",
+        "craft": "plumber",
+        "name": "West Coast"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.4051088,
+          34.0222263
+        ]
+      },
+      "id": "node/3960923726"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3961399897",
+        "craft": "plumber"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.6098811,
+          34.2012489
+        ]
+      },
+      "id": "node/3961399897"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3961992261",
+        "check_date": "2025-09-01",
+        "craft": "plumber",
+        "name": "John Riordan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.3966038,
+          34.0249397
+        ]
+      },
+      "id": "node/3961992261"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4216518110",
+        "craft": "plumber",
+        "name": "Saul Plumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.3688736,
+          38.2222208
+        ]
+      },
+      "id": "node/4216518110"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5529666654",
+        "craft": "plumber",
+        "name": "LP Decorative Plumbing",
+        "phone": "+1-415-641-7928"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.4183225,
+          37.7393202
+        ]
+      },
+      "id": "node/5529666654"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7276137883",
+        "addr:city": "Sun Valley",
+        "addr:housenumber": "11142",
+        "addr:postcode": "91352",
+        "addr:state": "CA",
+        "addr:street": "Fleetwood Street",
+        "addr:unit": "11",
+        "craft": "plumber",
+        "name": "J-Co Plumbing and Boiler",
+        "start_date": "1974"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.3736005,
+          34.2291858
+        ]
+      },
+      "id": "node/7276137883"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7465328169",
+        "craft": "plumber",
+        "name": "Boden Plumbing Heating & Air"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.4597426,
+          38.2815668
+        ]
+      },
+      "id": "node/7465328169"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8232804553",
+        "addr:city": "San Jose",
+        "addr:housenumber": "890",
+        "addr:postcode": "95112",
+        "addr:state": "CA",
+        "addr:street": "Service Street",
+        "addr:unit": "K",
+        "craft": "plumber",
+        "name": "Ferguson Enterprises"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8887161,
+          37.3696705
+        ]
+      },
+      "id": "node/8232804553"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8253026069",
+        "addr:city": "San Jose",
+        "addr:housenumber": "1716",
+        "addr:postcode": "95125",
+        "addr:state": "CA",
+        "addr:street": "Stone Avenue",
+        "addr:unit": "E",
+        "craft": "plumber",
+        "name": "Water Quality Plumbing Co."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8748645,
+          37.3059157
+        ]
+      },
+      "id": "node/8253026069"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8253076980",
+        "addr:city": "San Jose",
+        "addr:housenumber": "1915",
+        "addr:state": "CA",
+        "addr:street": "O’Toole Way",
+        "craft": "plumber",
+        "name": "Mike Counsil Plumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9064064,
+          37.3852199
+        ]
+      },
+      "id": "node/8253076980"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8462756077",
+        "craft": "plumber",
+        "name": "Ray Blom Plumber"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.4127324,
+          34.0080556
+        ]
+      },
+      "id": "node/8462756077"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8477181054",
+        "addr:city": "Santa Clara",
+        "addr:housenumber": "3038",
+        "addr:postcode": "95054",
+        "addr:state": "CA",
+        "addr:street": "Scott Boulevard",
+        "craft": "plumber",
+        "name": "Fixbid Corporation",
+        "operator": "PlumbPlus"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9604748,
+          37.3763404
+        ]
+      },
+      "id": "node/8477181054"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8486812567",
+        "addr:city": "Campbell",
+        "addr:housenumber": "355",
+        "addr:postcode": "95008",
+        "addr:state": "CA",
+        "addr:street": "East McGlincy Lane",
+        "addr:unit": "H",
+        "craft": "plumber",
+        "name": "De Anza Water Conditioning"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.943692,
+          37.2764767
+        ]
+      },
+      "id": "node/8486812567"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8487542708",
+        "addr:city": "San Jose",
+        "addr:housenumber": "1620",
+        "addr:postcode": "95131",
+        "addr:state": "CA",
+        "addr:street": "Oakland Road",
+        "addr:unit": "D202",
+        "craft": "plumber",
+        "fixme": "Somewhere on this floor",
+        "level": "1",
+        "name": "Plumbing Tech Repipe Specialists",
+        "official_name": "Plumbing Tech Repipe Specialists Incorporated"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.894251,
+          37.3812063
+        ]
+      },
+      "id": "node/8487542708"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8487550075",
+        "addr:city": "Gilroy",
+        "addr:housenumber": "8881",
+        "addr:postcode": "95020",
+        "addr:state": "CA",
+        "addr:street": "Muraoka Drive",
+        "addr:unit": "3",
+        "craft": "plumber",
+        "fixme": "location within building",
+        "name": "American Leak Detection"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.5774642,
+          37.0263201
+        ]
+      },
+      "id": "node/8487550075"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8508057843",
+        "craft": "plumber",
+        "name": "Rick Campos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.4076273,
+          34.0192547
+        ]
+      },
+      "id": "node/8508057843"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8663868292",
+        "addr:city": "San Jose",
+        "addr:housenumber": "3732",
+        "addr:postcode": "95136",
+        "addr:state": "CA",
+        "addr:street": "Charter Park Drive",
+        "addr:unit": "D",
+        "craft": "plumber",
+        "fixme": "Somewhere in this building or the next one",
+        "name": "Consolidated Plumbing",
+        "official_name": "Consolidated Plumbing Incorporated"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8504639,
+          37.2778322
+        ]
+      },
+      "id": "node/8663868292"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8685975642",
+        "addr:city": "Redwood City",
+        "addr:housenumber": "639",
+        "addr:postcode": "94063",
+        "addr:state": "CA",
+        "addr:street": "Bair Island Road",
+        "addr:unit": "605",
+        "craft": "plumber",
+        "fixme": "location within building"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.2257502,
+          37.4974897
+        ]
+      },
+      "id": "node/8685975642"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8947033590",
+        "craft": "plumber"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.3762128,
+          34.0427191
+        ]
+      },
+      "id": "node/8947033590"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9424412722",
+        "craft": "plumber",
+        "name": "S.P. Beagle"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.3928994,
+          33.8654883
+        ]
+      },
+      "id": "node/9424412722"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9484306806",
+        "addr:city": "El Cajon",
+        "addr:country": "US",
+        "addr:housenumber": "1100",
+        "addr:postcode": "92020",
+        "addr:state": "CA",
+        "addr:street": "North Magnolia Avenue",
+        "craft": "plumber",
+        "name": "Rodger's Plumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.9633434,
+          32.8108756
+        ]
+      },
+      "id": "node/9484306806"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9736194780",
+        "addr:housenumber": "85",
+        "addr:street": "Front Street",
+        "craft": "plumber",
+        "name": "Guaranteed Plumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9994069,
+          37.8234447
+        ]
+      },
+      "id": "node/9736194780"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9742168226",
+        "craft": "plumber",
+        "name": "JO-MI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.443576,
+          34.0405628
+        ]
+      },
+      "id": "node/9742168226"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9890085169",
+        "addr:city": "San Jose",
+        "addr:housenumber": "2108",
+        "addr:postcode": "95131",
+        "addr:state": "CA",
+        "addr:street": "Bering Drive",
+        "addr:unit": "C",
+        "craft": "plumber",
+        "name": "Aqualine Piping Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9179456,
+          37.3778194
+        ]
+      },
+      "id": "node/9890085169"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10060263447",
+        "addr:city": "Newhall",
+        "addr:housenumber": "24881",
+        "addr:postcode": "91321",
+        "addr:state": "CA",
+        "addr:street": "Railroad Avenue",
+        "addr:unit": "D",
+        "craft": "plumber",
+        "name": "The Plumbologist"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.5340625,
+          34.3877642
+        ]
+      },
+      "id": "node/10060263447"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10060263465",
+        "addr:city": "Newhall",
+        "addr:housenumber": "24848",
+        "addr:postcode": "91321",
+        "addr:state": "CA",
+        "addr:street": "Railroad Avenue",
+        "craft": "plumber",
+        "name": "Allen Plumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.5329716,
+          34.3871686
+        ]
+      },
+      "id": "node/10060263465"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10065054600",
+        "addr:city": "Redwood City",
+        "addr:housenumber": "372",
+        "addr:postcode": "94065",
+        "addr:state": "CA",
+        "addr:street": "Bridge Parkway",
+        "craft": "plumber",
+        "name": "Green Garden Plumber's Redwood City",
+        "opening_hours": "Mo-Su 9:00-21:00",
+        "phone": "+1-650-881-3530"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.2565973,
+          37.5298213
+        ]
+      },
+      "id": "node/10065054600"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10282192553",
+        "addr:country": "US",
+        "craft": "plumber",
+        "name": ".",
+        "operator": "Shea Choy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.9783792,
+          33.9292256
+        ]
+      },
+      "id": "node/10282192553"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10835627097",
+        "addr:city": "San Diego",
+        "addr:housenumber": "5052",
+        "addr:postcode": "92117",
+        "addr:state": "CA",
+        "addr:street": "Genesee Avenue",
+        "craft": "plumber",
+        "name": "Diamond Ace Plumber",
+        "phone": "+1 858 480 6183"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.1961172,
+          32.8372501
+        ]
+      },
+      "id": "node/10835627097"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11105727495",
+        "addr:city": "Sacramento",
+        "addr:housenumber": "7031",
+        "addr:postcode": "95842",
+        "addr:state": "CA",
+        "addr:street": "Roseville Road",
+        "addr:unit": "A",
+        "craft": "plumber",
+        "name": "NewWRX Plumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3407371,
+          38.6953242
+        ]
+      },
+      "id": "node/11105727495"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11359713484",
+        "alt_name": "Mister Rooter",
+        "brand": "Mr. Rooter",
+        "brand:wikidata": "Q6929145",
+        "craft": "plumber",
+        "name": "Mr. Rooter",
+        "official_name": "Mr. Rooter Plumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9828119,
+          37.7812332
+        ]
+      },
+      "id": "node/11359713484"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11729110860",
+        "craft": "plumber",
+        "name": "Val's Plumbing & Heating"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.648333,
+          36.6722894
+        ]
+      },
+      "id": "node/11729110860"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11750661481",
+        "craft": "plumber",
+        "name": "Cornett Plumbing & Heating"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.3146098,
+          33.8309994
+        ]
+      },
+      "id": "node/11750661481"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11970174564",
+        "addr:city": "Ceres",
+        "addr:housenumber": "4435",
+        "addr:postcode": "95307",
+        "addr:state": "CA",
+        "addr:street": "Farm Supply Drive",
+        "craft": "plumber",
+        "name": "Applegate Teeples Drilling Co., Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.9823553,
+          37.5739292
+        ]
+      },
+      "id": "node/11970174564"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12053663569",
+        "craft": "plumber",
+        "name": "General plumbing supply co."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.053563,
+          38.9378253
+        ]
+      },
+      "id": "node/12053663569"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12143762209",
+        "addr:city": "Hollister",
+        "addr:housenumber": "400",
+        "addr:postcode": "95023",
+        "addr:state": "CA",
+        "addr:street": "Park Center Drive",
+        "addr:unit": "6",
+        "craft": "plumber",
+        "name": "Drain Master"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3988248,
+          36.8812257
+        ]
+      },
+      "id": "node/12143762209"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12251716432",
+        "addr:housenumber": "801",
+        "addr:street": "Arguello Street",
+        "check_date": "2024-10-14",
+        "craft": "plumber",
+        "name": "Ron Williams Plumbing",
+        "phone": "+1 650-444-0449"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.2357241,
+          37.4887785
+        ]
+      },
+      "id": "node/12251716432"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12404425668",
+        "craft": "plumber",
+        "name": "Tino's Plumbing and Drain Service"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.7608073,
+          36.9212518
+        ]
+      },
+      "id": "node/12404425668"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12591353712",
+        "addr:city": "Los Angeles",
+        "addr:housenumber": "6212",
+        "addr:postcode": "90045",
+        "addr:state": "CA",
+        "addr:street": "West 87th Street",
+        "craft": "plumber",
+        "name": "Heflin & Son"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.3940444,
+          33.9584654
+        ]
+      },
+      "id": "node/12591353712"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12644734321",
+        "craft": "plumber",
+        "name": "Miller Plumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.3441211,
+          33.9189168
+        ]
+      },
+      "id": "node/12644734321"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12651662044",
+        "addr:city": "Watsonville",
+        "addr:housenumber": "605",
+        "addr:postcode": "95076",
+        "addr:state": "CA",
+        "addr:street": "Tuttle Avenue",
+        "addr:unit": "3",
+        "contact:yelp": "https://www.yelp.com/biz/mario-bros-plumbing-watsonville-2",
+        "craft": "plumber",
+        "name": "Mario Bros Plumbing",
+        "phone": "+1 831 345 7751"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.7457329,
+          36.9220015
+        ]
+      },
+      "id": "node/12651662044"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12959678401",
+        "addr:housenumber": "1137",
+        "addr:street": "Needham Street",
+        "craft": "plumber",
+        "name": "Fred Hill Mechanical, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.0083622,
+          37.6460542
+        ]
+      },
+      "id": "node/12959678401"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/13093867208",
+        "craft": "plumber",
+        "name": "Roto-Rooter Plumbers"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.5679985,
+          38.1108262
+        ]
+      },
+      "id": "node/13093867208"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/13246538388",
+        "addr:city": "Fresno",
+        "addr:housenumber": "1885",
+        "addr:postcode": "93726",
+        "addr:state": "CA",
+        "addr:street": "East Griffith Way",
+        "addr:unit": "104",
+        "craft": "plumber",
+        "name": "Pipes Are Us",
+        "phone": "+1-559-226-1600"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.7885069,
+          36.7906418
+        ]
+      },
+      "id": "node/13246538388"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/13440871529",
+        "craft": "plumber",
+        "name": "R.J. Collins Plumbing Company"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.0256116,
+          34.1425124
+        ]
+      },
+      "id": "node/13440871529"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/13676166875",
+        "craft": "plumber",
+        "name": "Verdugo Plumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.2263537,
+          34.2036746
+        ]
+      },
+      "id": "node/13676166875"
+    }
+  ]
+}

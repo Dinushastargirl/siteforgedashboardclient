@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITEFORGE | Lead Command Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <script>
+        // Check authentication
+        const authUser = JSON.parse(localStorage.getItem('user'));
+        if (!authUser) {
+            window.location.href = '/';
+        }
+        
+        // Auto-apply theme from local storage
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.remove('dark-theme');
+        }
+    </script>
+    <div class="app-container">
+        <aside>
+            <div class="logo">
+                <i data-lucide="zap"></i>
+                SITEFORGE
+            </div>
+            <nav>
+                <div class="nav-item active" data-view="dashboard">
+                    <i data-lucide="layout-dashboard"></i>
+                    Dashboard
+                </div>
+                <div class="nav-item" data-view="leads">
+                    <i data-lucide="users"></i>
+                    SOLID Leads
+                </div>
+                <div class="nav-item" data-view="logs">
+                    <i data-lucide="mail"></i>
+                    Outreach Logs
+                </div>
+                <div class="nav-item" data-view="settings">
+                    <i data-lucide="settings"></i>
+                    Settings
+                </div>
+            </nav>
+        </aside>
+
+        <main>
+            <header class="header">
+                <div>
+                    <h1>Lead Command Center</h1>
+                    <p style="color: var(--text-secondary)">Manage your solid leads and execute outreach sequences.</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1.5rem;">
+                    <!-- Realtime Clock -->
+                    <div id="realtime-clock" style="font-family: monospace; font-size: 1.1rem; color: var(--accent-color); font-weight: bold;">
+                        00:00:00
+                    </div>
+                    
+                    <!-- Global Niche Selector -->
+                    <div class="niche-selector-container" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Niche:</span>
+                        <select id="global-niche-select" style="padding: 0.5rem 2rem 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--text-primary); font-weight: 600; cursor: pointer; outline: none; appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220%22%20%220%22%20%2224%22%20%2224%22 fill=%22none%22 stroke=%22%236b7280%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 class=%22lucide%22><polyline points=%226%209%2012%2015%2018%209%22></polyline></svg>'); background-repeat: no-repeat; background-position: right 6px center; background-size: 16px;">
+                            <option value="All" selected>All Niches (250 Real Leads)</option>
+                            <option value="Georgia">Georgia (Vintage & Books)</option>
+                            <option value="Kentucky">Kentucky (Bakeries & Deli)</option>
+                            <option value="Mississippi">Mississippi (Barbers & Salons)</option>
+                            <option value="Vermont">Vermont (Maple & Farms)</option>
+                            <option value="West Virginia">West Virginia (Diners & Services)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Theme Toggle -->
+                    <button class="btn btn-secondary" id="theme-toggle" style="padding: 0.5rem; border-radius: 50%;">
+                        <i data-lucide="sun" id="theme-icon"></i>
+                    </button>
+                    
+                    <!-- User Profile -->
+                    <div class="user-profile" style="display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="text-align: right;">
+                            <div style="font-weight: bold; font-size: 0.9rem;" id="user-display-name">Dinusha</div>
+                            <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase;" id="user-role-badge">Admin</div>
+                        </div>
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-color), #818cf8); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">
+                            <span id="user-initial">D</span>
+                        </div>
+                        <button class="btn btn-secondary" id="btn-logout" style="padding: 0.4rem; margin-left: 0.5rem;" title="Logout">
+                            <i data-lucide="log-out" style="width: 16px; height: 16px;"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard View -->
+            <div id="view-dashboard" class="view-section active">
+                <section class="stats-grid">
+                    <div class="stat-card">
+                        <div style="color: var(--text-secondary)">Total Leads</div>
+                        <div class="stat-value" id="stat-total">0</div>
+                        <div style="font-size: 0.75rem; color: #10b981">+12% from last week</div>
+                    </div>
+                    <div class="stat-card">
+                        <div style="color: var(--text-secondary)">HOT Leads</div>
+                        <div class="stat-value" id="stat-hot" style="color: var(--hot-color)">0</div>
+                        <div style="font-size: 0.75rem; color: var(--hot-color)">High priority</div>
+                    </div>
+                    <div class="stat-card">
+                        <div style="color: var(--text-secondary)">Avg. Quality</div>
+                        <div class="stat-value" id="stat-avg">0/100</div>
+                        <div style="font-size: 0.75rem; color: var(--accent-color)">Above industry avg</div>
+                    </div>
+                </section>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2>Current Leads</h2>
+                    <button class="btn btn-secondary" onclick="fetchLeads()">
+                        <i data-lucide="refresh-cw" style="width: 16px;"></i>
+                        Refresh Data
+                    </button>
+                </div>
+
+                <div class="lead-grid" id="lead-grid">
+                    <!-- Leads will be injected here by app.js -->
+                    <div class="lead-card" style="grid-column: 1/-1; text-align: center; padding: 4rem;">
+                        <p>Loading leads...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOLID Leads View -->
+            <div id="view-leads" class="view-section" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2>SOLID Leads Directory</h2>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <input type="text" id="directory-search-input" placeholder="Search leads..." style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--text-primary); width: 250px;">
+                        
+                        <!-- Filter Dropdown Container -->
+                        <div class="filter-dropdown-container">
+                            <button class="btn btn-primary" id="btn-directory-filter">
+                                <i data-lucide="filter" style="width: 16px;"></i>
+                                Filter
+                            </button>
+                            <!-- Dropdown overlay -->
+                            <div class="filter-dropdown" id="directory-filter-dropdown">
+                                <div class="dropdown-section-title">Filter by Status</div>
+                                <label class="dropdown-option">
+                                    <input type="checkbox" id="filter-status-hot" checked>
+                                    <span>HOT (No Website)</span>
+                                </label>
+                                <label class="dropdown-option">
+                                    <input type="checkbox" id="filter-status-warm" checked>
+                                    <span>WARM (Has Website)</span>
+                                </label>
+                                
+                                <div class="dropdown-section-title">Filter by Quality Score</div>
+                                <label class="dropdown-option">
+                                    <input type="radio" name="filter-quality" id="filter-quality-all" checked>
+                                    <span>All Scores</span>
+                                </label>
+                                <label class="dropdown-option">
+                                    <input type="radio" name="filter-quality" id="filter-quality-high">
+                                    <span>Needs Help (<= 3)</span>
+                                </label>
+                                <label class="dropdown-option">
+                                    <input type="radio" name="filter-quality" id="filter-quality-good">
+                                    <span>Established (>= 4)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Leads Directory Table -->
+                <div class="leads-table-container">
+                    <table class="leads-table">
+                        <thead>
+                            <tr>
+                                <th>Business Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Quality Score</th>
+                                <th>Status</th>
+                                <th style="text-align: right;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="directory-table-body">
+                            <!-- Injected by app.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Outreach Logs View -->
+            <div id="view-logs" class="view-section" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2>Outreach Logs</h2>
+                    <button class="btn btn-secondary" id="btn-clear-logs" style="color: var(--hot-color); border-color: rgba(244, 63, 94, 0.2);">
+                        <i data-lucide="trash-2" style="width: 16px;"></i>
+                        Clear History
+                    </button>
+                </div>
+                
+                <!-- Logs Table -->
+                <div class="leads-table-container">
+                    <table class="leads-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Business Name</th>
+                                <th>Recipient Email</th>
+                                <th>Action Taken</th>
+                                <th>Operator</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logs-table-body">
+                            <!-- Injected by app.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="view-settings" class="view-section" style="display: none;">
+                <div class="chrome-settings-wrapper">
+                    <!-- Top Chrome Search Bar -->
+                    <div class="chrome-search-container">
+                        <div class="chrome-search-box">
+                            <i data-lucide="search"></i>
+                            <input type="text" id="chrome-settings-search" class="chrome-search-input" placeholder="Search settings">
+                        </div>
+                    </div>
+
+                    <!-- Layout Grid -->
+                    <div class="chrome-settings-layout">
+                        <!-- Left Sub-Sidebar (Chrome Style) -->
+                        <div class="chrome-settings-sidebar">
+                            <div class="chrome-sidebar-item active" data-settings-tab="you">
+                                <i data-lucide="user"></i>
+                                You and SiteForge
+                            </div>
+                            <div class="chrome-sidebar-item" data-settings-tab="outreach">
+                                <i data-lucide="file-text"></i>
+                                Autofill and outreach
+                            </div>
+                            <div class="chrome-sidebar-item" data-settings-tab="privacy">
+                                <i data-lucide="shield"></i>
+                                Privacy and security
+                            </div>
+                            <div class="chrome-sidebar-item" data-settings-tab="performance">
+                                <i data-lucide="zap"></i>
+                                Performance
+                            </div>
+                            <div class="chrome-sidebar-divider"></div>
+                            <div class="chrome-sidebar-item" data-settings-tab="appearance">
+                                <i data-lucide="palette"></i>
+                                Appearance
+                            </div>
+                            <div class="chrome-sidebar-item" data-settings-tab="system">
+                                <i data-lucide="cpu"></i>
+                                System
+                            </div>
+                            <div class="chrome-sidebar-item" data-settings-tab="reset">
+                                <i data-lucide="rotate-ccw"></i>
+                                Reset settings
+                            </div>
+                        </div>
+
+                        <!-- Right Content Panels (Chrome Style) -->
+                        <div class="chrome-settings-content">
+                            <!-- 1. You and SiteForge -->
+                            <div id="settings-group-you" class="chrome-settings-group">
+                                <h3 class="chrome-group-title">You and SiteForge</h3>
+                                <div class="chrome-card">
+                                    <!-- Sync Profile Row -->
+                                    <div class="chrome-profile-card">
+                                        <div class="chrome-profile-avatar" id="chrome-profile-avatar">D</div>
+                                        <div class="chrome-profile-info">
+                                            <div class="chrome-profile-name" id="chrome-profile-name">Dinusha Pushparajah</div>
+                                            <div class="chrome-profile-sync">
+                                                <i data-lucide="check-circle-2" class="chrome-sync-status-icon"></i>
+                                                Syncing to <span id="chrome-profile-email">dinushapushparajah@gmail.com</span>
+                                            </div>
+                                        </div>
+                                        <button class="btn-chrome-outline" id="btn-sync-toggle">Turn off</button>
+                                    </div>
+                                    <!-- Active Sync Profile Account Select Dropdown -->
+                                    <div class="chrome-row" id="row-switch-profile" style="flex-direction: column; align-items: stretch; gap: 0.75rem; padding: 1.25rem 1rem; border-bottom: 1px solid var(--border-color);">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                            <span class="chrome-row-label" style="font-weight: 600;">Active Chrome Sync Profile</span>
+                                            <span class="chrome-row-meta" style="color: var(--accent-color); font-weight: 600; font-size: 0.8rem; display: flex; align-items: center; gap: 0.25rem;">
+                                                <span class="badge-status-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                                                Multi-Account Connected
+                                            </span>
+                                        </div>
+                                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.25rem 0; line-height: 1.4;">Select which local Chrome profile is active. This dynamically switches the outreach signature, avatar styling, and sync operator identity across the command center.</p>
+                                        <select id="setting-profile-select" class="chrome-input-field" style="width: 100%; border-radius: 8px; padding: 0.6rem; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); font-size: 0.875rem; cursor: pointer; outline: none; transition: border-color 0.2s;">
+                                            <option value="dinushapushparajah@gmail.com">Dinusha Pushparajah (dinushapushparajah@gmail.com)</option>
+                                            <option value="dinudinu4927@gmail.com">Dinusha Pushparajah - Personal (dinudinu4927@gmail.com)</option>
+                                            <option value="vorkglobal@gmail.com">vorkglobal (vorkglobal@gmail.com)</option>
+                                            <option value="aurumstudiocctv@gmail.com">Aurumstudio (aurumstudiocctv@gmail.com)</option>
+                                            <option value="littleheartbaker0010@gmail.com">Littleheart (littleheartbaker0010@gmail.com)</option>
+                                        </select>
+                                    </div>
+                                    <!-- Menu Rows -->
+                                    <div class="chrome-row" id="row-sync-services">
+                                        <span class="chrome-row-label">Sync and Google services</span>
+                                        <span class="chrome-row-meta"><i data-lucide="chevron-right"></i></span>
+                                    </div>
+                                    <div class="chrome-row" id="row-manage-account">
+                                        <span class="chrome-row-label">Manage your Google Account</span>
+                                        <span class="chrome-row-meta"><i data-lucide="external-link" style="width:14px; height:14px;"></i></span>
+                                    </div>
+                                    <div class="chrome-row" id="row-custom-profile">
+                                        <span class="chrome-row-label">Customise your Chrome profile</span>
+                                        <span class="chrome-row-meta"><i data-lucide="chevron-right"></i></span>
+                                    </div>
+                                    <div class="chrome-row" id="row-import-bookmarks">
+                                        <span class="chrome-row-label">Import bookmarks and settings</span>
+                                        <span class="chrome-row-meta"><i data-lucide="chevron-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Autofill and Outreach -->
+                            <div id="settings-group-outreach" class="chrome-settings-group" style="display: none;">
+                                <h3 class="chrome-group-title">Autofill and outreach</h3>
+                                <div class="chrome-card">
+                                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">Configure default email subjects and scoring criteria for automated pitches.</p>
+                                    
+                                    <div class="chrome-form-control">
+                                        <label class="chrome-label">Outreach Template Subject</label>
+                                        <input type="text" id="setting-subject-input" class="chrome-input-field" value="Need a new website for your plumbing business?">
+                                    </div>
+                                    <div class="chrome-form-control" style="margin-top: 1.25rem;">
+                                        <label class="chrome-label">Minimum Quality Score Filter</label>
+                                        <input type="number" id="setting-score-input" class="chrome-input-field" value="1" min="1" max="10">
+                                    </div>
+                                    
+                                    <div style="display: flex; justify-content: flex-end; margin-top: 2rem;">
+                                        <button class="btn btn-primary" id="btn-save-chrome-settings">
+                                            <i data-lucide="save"></i>
+                                            Save Changes
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Privacy and security -->
+                            <div id="settings-group-privacy" class="chrome-settings-group" style="display: none;">
+                                <h3 class="chrome-group-title">Privacy and security</h3>
+                                <div class="chrome-card">
+                                    <div class="chrome-row" onclick="alert('Outreach history logs have been cleared successfully!')">
+                                        <span class="chrome-row-label" style="color: var(--hot-color);">Clear outreach history and cache</span>
+                                        <span class="chrome-row-meta"><i data-lucide="trash-2" style="color: var(--hot-color);"></i></span>
+                                    </div>
+                                    <div class="chrome-row" onclick="alert('Session Token re-generated successfully.')">
+                                        <span class="chrome-row-label">Reset login session authentication token</span>
+                                        <span class="chrome-row-meta"><i data-lucide="key"></i></span>
+                                    </div>
+                                    <div class="chrome-row">
+                                        <span class="chrome-row-label">Safe Browsing protection level</span>
+                                        <span class="chrome-row-meta">Standard protection <i data-lucide="chevron-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4. Performance -->
+                            <div id="settings-group-performance" class="chrome-settings-group" style="display: none;">
+                                <h3 class="chrome-group-title">Performance</h3>
+                                <div class="chrome-card">
+                                    <div class="chrome-row" style="cursor: default;">
+                                        <div>
+                                            <span class="chrome-row-label" style="display:block;">Memory Saver</span>
+                                            <span style="font-size:0.8rem; color:var(--text-secondary)">When on, SiteForge frees up memory from inactive lead detail tabs.</span>
+                                        </div>
+                                        <span class="chrome-row-meta">
+                                            <input type="checkbox" checked style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
+                                        </span>
+                                    </div>
+                                    <div class="chrome-row" style="cursor: default;">
+                                        <div>
+                                            <span class="chrome-row-label" style="display:block;">Preload Facebook and Email info</span>
+                                            <span style="font-size:0.8rem; color:var(--text-secondary)">Speeds up lead card loading and background quality validation.</span>
+                                        </div>
+                                        <span class="chrome-row-meta">
+                                            <input type="checkbox" checked style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 5. Appearance -->
+                            <div id="settings-group-appearance" class="chrome-settings-group" style="display: none;">
+                                <h3 class="chrome-group-title">Appearance</h3>
+                                <div class="chrome-card">
+                                    <div class="chrome-row" id="row-theme-change">
+                                        <span class="chrome-row-label">Toggle System Interface Theme</span>
+                                        <span class="chrome-row-meta">Light / Dark <i data-lucide="palette"></i></span>
+                                    </div>
+                                    <div class="chrome-row">
+                                        <span class="chrome-row-label">Show Home button in sidebar</span>
+                                        <span class="chrome-row-meta">
+                                            <input type="checkbox" checked style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
+                                        </span>
+                                    </div>
+                                    <div class="chrome-row">
+                                        <span class="chrome-row-label">Font size</span>
+                                        <span class="chrome-row-meta">Medium (recommended) <i data-lucide="chevron-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 6. System -->
+                            <div id="settings-group-system" class="chrome-settings-group" style="display: none;">
+                                <h3 class="chrome-group-title">System</h3>
+                                <div class="chrome-card">
+                                    <div class="chrome-row" style="cursor: default;">
+                                        <span class="chrome-row-label">Backend Python Server URL</span>
+                                        <span class="chrome-row-meta" style="font-family:monospace; color:var(--accent-color)">http://127.0.0.1:5000</span>
+                                    </div>
+                                    <div class="chrome-row" style="cursor: default;">
+                                        <span class="chrome-row-label">Active Database Source</span>
+                                        <span class="chrome-row-meta" style="font-family:monospace;">master_leads.json</span>
+                                    </div>
+                                    <div class="chrome-row" style="cursor: default;">
+                                        <span class="chrome-row-label">Use hardware acceleration when available</span>
+                                        <span class="chrome-row-meta">
+                                            <input type="checkbox" checked style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 7. Reset settings -->
+                            <div id="settings-group-reset" class="chrome-settings-group" style="display: none;">
+                                <h3 class="chrome-group-title">Reset settings</h3>
+                                <div class="chrome-card">
+                                    <div class="chrome-row" onclick="if(confirm('Are you sure you want to restore original default settings? This cannot be undone.')) { alert('Settings restored successfully!'); }">
+                                        <div>
+                                            <span class="chrome-row-label" style="display:block;">Restore settings to their original defaults</span>
+                                            <span style="font-size:0.8rem; color:var(--text-secondary)">Resets template subject, quality filters, and performance flags.</span>
+                                        </div>
+                                        <span class="chrome-row-meta"><i data-lucide="rotate-ccw"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Outreach Modal -->
+    <div class="modal-overlay" id="outreach-modal">
+        <div class="modal-content">
+            <div class="close-modal" id="close-modal">
+                <i data-lucide="x"></i>
+            </div>
+            <h2 id="modal-title">Email Outreach</h2>
+            <p id="modal-subtitle" style="color: var(--text-secondary); margin-bottom: 1.5rem;"></p>
+            
+            <div class="email-preview" id="email-body"></div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button class="btn btn-primary" id="btn-copy">
+                    <i data-lucide="copy"></i>
+                    Copy to Clipboard
+                </button>
+                <button class="btn btn-secondary" id="btn-gmail">
+                    <i data-lucide="external-link"></i>
+                    Open in Gmail
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

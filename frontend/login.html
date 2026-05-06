@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITEFORGE | Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--bg-color);
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .login-card {
+            background-color: var(--sidebar-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid var(--border-color);
+        }
+        .login-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        .login-logo i {
+            color: var(--accent-color);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+        .error-message {
+            color: var(--hot-color);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <div class="login-card">
+        <div class="login-logo">
+            <i data-lucide="zap"></i>
+            SITEFORGE
+        </div>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Sign in to access leads</p>
+        
+        <div id="error-message" class="error-message">Invalid credentials</div>
+        
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" class="form-control" required autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+                Sign In
+            </button>
+        </form>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        // Auto-apply theme from local storage
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.remove('dark-theme');
+        }
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-message');
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    localStorage.setItem('auth_token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    window.location.href = '/dashboard';
+                } else {
+                    errorMsg.textContent = data.message || 'Login failed';
+                    errorMsg.style.display = 'block';
+                }
+            } catch (err) {
+                errorMsg.textContent = 'Server error. Is the backend running?';
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

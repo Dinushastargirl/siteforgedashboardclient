@@ -1,0 +1,428 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-05-06T09:04:45Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/279401793",
+        "amenity": "dentist",
+        "building": "yes",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.9977847,
+          7.9191975
+        ]
+      },
+      "id": "way/279401793"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/279405242",
+        "amenity": "dentist",
+        "building": "yes",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0020024,
+          7.9194118
+        ]
+      },
+      "id": "way/279405242"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/501637007",
+        "amenity": "doctors",
+        "building": "yes",
+        "name": "National Transport Medical Institute",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.4978574,
+          8.7595615
+        ]
+      },
+      "id": "way/501637007"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/759553805",
+        "building": "yes",
+        "building:levels": "1",
+        "layer": "1",
+        "office": "engineer",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.2731381,
+          7.8192378
+        ]
+      },
+      "id": "way/759553805"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/759810240",
+        "amenity": "doctors",
+        "building": "yes",
+        "healthcare": "doctor",
+        "healthcare:speciality": "general;community",
+        "name": "Primary Medical Care Unit - Kelegama",
+        "@geometry": "center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0875175,
+          7.9019603
+        ]
+      },
+      "id": "way/759810240"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2820301643",
+        "amenity": "doctors",
+        "name": "Dr. Samantha"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.018715,
+          7.9402078
+        ]
+      },
+      "id": "node/2820301643"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3783391619",
+        "amenity": "doctors",
+        "name": "Health Care (Gvt.)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.3986556,
+          8.309217
+        ]
+      },
+      "id": "node/3783391619"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3791103056",
+        "amenity": "doctors",
+        "opening_hours": "17:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.3998044,
+          8.309681
+        ]
+      },
+      "id": "node/3791103056"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3896098207",
+        "amenity": "doctors"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.3973802,
+          8.3171
+        ]
+      },
+      "id": "node/3896098207"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3931996585",
+        "amenity": "doctors",
+        "name": "SVS Medical Centre"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.4376225,
+          8.7607023
+        ]
+      },
+      "id": "node/3931996585"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4267415077",
+        "amenity": "doctors",
+        "name": "Hospital undeer construction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.2145215,
+          8.7587606
+        ]
+      },
+      "id": "node/4267415077"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4314362689",
+        "addr:city": "Dambulla",
+        "addr:street": "Kandy - Jaffna Road",
+        "amenity": "doctors",
+        "healthcare": "doctor",
+        "internet_access": "wlan",
+        "level": "1;0",
+        "name": "Marcopolo",
+        "tourism": "hostel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.6507283,
+          7.8782048
+        ]
+      },
+      "id": "node/4314362689"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4845947828",
+        "addr:city": "Dambulla",
+        "addr:street": "Kurunegala - Dambulla Road",
+        "amenity": "dentist",
+        "healthcare": "dentist"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.6504682,
+          7.8736787
+        ]
+      },
+      "id": "node/4845947828"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4845947829",
+        "amenity": "doctors",
+        "healthcare": "doctor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.650226,
+          7.8732763
+        ]
+      },
+      "id": "node/4845947829"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4910764101",
+        "addr:city": "Dambulla",
+        "addr:street": "Kurunegala - Dambulla Road",
+        "amenity": "doctors",
+        "healthcare": "doctor",
+        "name": "Charutha Medical centre"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.650036,
+          7.8729652
+        ]
+      },
+      "id": "node/4910764101"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4910826136",
+        "amenity": "doctors",
+        "healthcare": "doctor",
+        "name": "The medi-care center"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.6498443,
+          7.872661
+        ]
+      },
+      "id": "node/4910826136"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4919036830",
+        "addr:street": "Kandalama Road",
+        "amenity": "doctors",
+        "healthcare": "doctor",
+        "name": "Medical centre"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.6617417,
+          7.8590256
+        ]
+      },
+      "id": "node/4919036830"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4919036834",
+        "addr:city": "Dambulla",
+        "addr:street": "Kandalama Road",
+        "amenity": "doctors",
+        "healthcare": "doctor",
+        "name": "Suwapiyasa Medical Centre"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.6649673,
+          7.8611789
+        ]
+      },
+      "id": "node/4919036834"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5395088723",
+        "amenity": "doctors",
+        "healthcare": "doctor",
+        "name": "Suwamadura Pharmacy and Medical Centre"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.7554499,
+          8.0396051
+        ]
+      },
+      "id": "node/5395088723"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5863870386",
+        "addr:street": "Somawathiya Road",
+        "amenity": "doctors",
+        "healthcare": "doctor",
+        "name": "Nirodha Medical Centre - Dr. Kasun Ranathunga",
+        "name:en": "Nirodha Medical Centre",
+        "opening_hours": "Mo-Su 17:00-20:00",
+        "operator": "Dr. Kasun Ranathunga"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          81.0185053,
+          7.9495982
+        ]
+      },
+      "id": "node/5863870386"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6856519817",
+        "amenity": "doctors",
+        "description": "First Aid",
+        "healthcare": "doctor",
+        "operator": "Sri Lanka Red Cross Society, Matala Branch"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.7600599,
+          7.9578096
+        ]
+      },
+      "id": "node/6856519817"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6862737858",
+        "amenity": "dentist"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.3980528,
+          8.3178419
+        ]
+      },
+      "id": "node/6862737858"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11597814969",
+        "addr:street": "Gnanavairavar kovil road",
+        "amenity": "dentist",
+        "name:en": "NVVUE243"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5086517,
+          8.7504658
+        ]
+      },
+      "id": "node/11597814969"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11652102269",
+        "addr:street": "Gnanavairavar kovil road",
+        "amenity": "dentist",
+        "name:en": "Dental"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.5087902,
+          8.7501454
+        ]
+      },
+      "id": "node/11652102269"
+    }
+  ]
+}

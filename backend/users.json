@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "username": "Inventormini",
+      "password": "dinu101",
+      "role": "admin",
+      "name": "Dinusha"
+    },
+    {
+      "username": "employee1",
+      "password": "emp123",
+      "role": "employee",
+      "name": "Employee One"
+    },
+    {
+      "username": "employee2",
+      "password": "emp123",
+      "role": "employee",
+      "name": "Employee Two"
+    },
+    {
+      "username": "employee3",
+      "password": "emp123",
+      "role": "employee",
+      "name": "Employee Three"
+    }
+  ]
+}
