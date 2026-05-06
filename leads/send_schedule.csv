@@ -1,0 +1,48 @@
+day,day_label,send_date,send_time,to_email,subject,business_name,niche,city,status
+1,Day 1 — Warm-up,2026-05-07,11:00:00,eshavers@gmail.com,Quick question for e. shaver bookseller in Savannah,e. shaver bookseller,retail,"Savannah, GA",PENDING
+1,Day 1 — Warm-up,2026-05-07,11:01:30,pickerjoes@gmail.com,Quick question for picker joe's,picker joe's,general,"Savannah, GA",PENDING
+1,Day 1 — Warm-up,2026-05-07,11:03:00,meta@hostessprovisions.com,Savannah customers are searching — is HOSTESS PROVISIONS showing up?,HOSTESS PROVISIONS,general,"Savannah, GA",PENDING
+1,Day 1 — Warm-up,2026-05-07,11:04:30,Thefrayedknotsav@yahoo.com,A simple idea for The Frayed Knot,The Frayed Knot,general,"Savannah, GA",PENDING
+1,Day 1 — Warm-up,2026-05-07,11:06:00,savscribbleartstudio@gmail.com,Quick idea for scribble art studio in Savannah,scribble art studio,barbershop,"Savannah, GA",PENDING
+1,Day 1 — Warm-up,2026-05-07,11:07:30,kirchhoffsbakery@gmail.com,Paducah customers are searching — is Kirchhoff's Bakery & Deli showing up?,Kirchhoff's Bakery & Deli,general,"Paducah, KY",PENDING
+1,Day 1 — Warm-up,2026-05-07,11:09:00,artisankitchenbakery@gmail.com,More tables for Artisan Kitchen?,Artisan Kitchen,restaurant,"Paducah, KY",PENDING
+1,Day 1 — Warm-up,2026-05-07,11:10:30,wurthfarms@comcast.net,Paducah customers are searching for farms like yours,Wurth Farms,farm,"Paducah, KY",PENDING
+1,Day 1 — Warm-up,2026-05-07,11:12:00,barkleyhillshoney@gmail.com,Helping Barkley Hills Honey reach more customers online,Barkley Hills Honey,farm,"Cadiz, KY",PENDING
+1,Day 1 — Warm-up,2026-05-07,11:13:30,rlbrown@wk.net,A simple idea for Papa Brown's,Papa Brown's,general,"Paducah, KY",PENDING
+2,Day 2 — Warm-up,2026-05-08,11:00:00,jayspumpkinpatch@gmail.com,Kirksey customers are searching — is Jay's Pumpkin Patch showing up?,Jay's Pumpkin Patch,general,"Kirksey, KY",PENDING
+2,Day 2 — Warm-up,2026-05-08,11:01:30,Farmgirl1208@hotmail.com,Harris Farms — have you thought about online orders?,Harris Farms,farm,"Benton, KY",PENDING
+2,Day 2 — Warm-up,2026-05-08,11:03:00,harrison@ken-tennwireless.com,Fulton customers are searching for farms like yours,Harrison Farms,farm,"Fulton, KY",PENDING
+2,Day 2 — Warm-up,2026-05-08,11:04:30,magneylegacyridgefarm@gmail.com,Magney Legacy Ridge Farm — have you thought about online orders?,Magney Legacy Ridge Farm,farm,"Princeton, KY",PENDING
+2,Day 2 — Warm-up,2026-05-08,11:06:00,Kslr68@yahoo.com,"Your products deserve to be seen, Little Rayne Farm",Little Rayne Farm,farm,"Farmington, KY",PENDING
+2,Day 2 — Warm-up,2026-05-08,11:07:30,cpalmer@wk.net,Quick question about Wades Creek Produce,Wades Creek Produce,farm,"Kirksey, KY",PENDING
+2,Day 2 — Warm-up,2026-05-08,11:09:00,kalsinbay@wk.net,Spoon Grove Farm — have you thought about online orders?,Spoon Grove Farm,farm,"Paducah, KY",PENDING
+2,Day 2 — Warm-up,2026-05-08,11:10:30,fikaacresfarm@gmail.com,Lexington customers are searching for farms like yours,Fika Acres Farm,farm,"Lexington, KY",PENDING
+2,Day 2 — Warm-up,2026-05-08,11:12:00,Stephanie.steele.agc@gmail.com,Helping Sutton's Sweet Corn reach more customers,Sutton's Sweet Corn,general,"Paducah, KY",PENDING
+2,Day 2 — Warm-up,2026-05-08,11:13:30,Patricia.stewart@gmail.com,Helping Rustydog Farm reach more customers online,Rustydog Farm,farm,"Hardin, KY",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:00:00,keithawright@yahoo.com,"Your products deserve to be seen, Wright Farms",Wright Farms,farm,"Paducah, KY",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:01:30,Wyatt.jerry@gmail.com,KY Hydro Farm — have you thought about online orders?,KY Hydro Farm,farm,"Benton, KY",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:03:00,denise@glutenfreemiracles.com,Lexington customers are searching — is Gluten Free Miracles showing up?,Gluten Free Miracles,general,"Lexington, KY",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:04:30,olivesapron@gmail.com,Helping Olive's Apron reach more customers,Olive's Apron,general,"Lexington, KY",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:06:00,2twosunsfarm@gmail.com,Helping Two Suns Farms reach more customers online,Two Suns Farms,farm,"Lexington, KY",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:07:30,gary@macksontheriver.com,Helping Mack's On the River reach more customers,Mack's On the River,general,"Gulfport, MS",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:09:00,chuckbolton@comcast.net,Quick question about Bolton Mountain Maple Farm LLC,Bolton Mountain Maple Farm LLC,farm,"Montpelier, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:10:30,braggfarmsugarhouse@aol.com,Bragg Farm Sugarhouse & Gift Shop — have you thought about online orders?,Bragg Farm Sugarhouse & Gift Shop,farm,"Montpelier, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:12:00,barrywildemaples@gmail.com,Quick question about Branon's Barrywilde Maples LLC,Branon's Barrywilde Maples LLC,farm,"Brattleboro, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:13:30,Brookfieldbees@gmail.com,A simple idea for Brookfield Bees,Brookfield Bees,general,"Montpelier, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:15:00,Buckmtnmaplefarm@gmail.com,Helping Buck Mountain Maple Bee & Tree Farm reach more customers online,Buck Mountain Maple Bee & Tree Farm,farm,"Montpelier, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:16:30,Karen@cbmaplefarm.com,"Your products deserve to be seen, Carman Brook Farm LLC",Carman Brook Farm LLC,farm,"Montpelier, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:18:00,ainley.geo@gmail.com,Quick question for George Ainley,George Ainley,general,"Burlington, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:19:30,jim@jasbecker.com,Jim Becker — getting found online in Brattleboro?,Jim Becker,general,"Brattleboro, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:21:00,richard@bissellwoodworking.com,Montpelier customers are searching — is Richard Bissell showing up?,Richard Bissell,general,"Montpelier, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:22:30,dboynton@ezcloud.com,Burlington customers are searching — is David Boynton showing up?,David Boynton,general,"Burlington, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:24:00,jasonebreen@gmail.com,Quick question for Jason Breen,Jason Breen,general,"Brattleboro, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:25:30,tim@timothyclark.com,Timothy Clark — getting found online in Montpelier?,Timothy Clark,general,"Montpelier, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:27:00,br@fieldstonearts.com,BR Delaney — getting found online in Burlington?,BR Delaney,general,"Burlington, VT",PENDING
+3,Day 3 — Ramp up,2026-05-09,08:28:30,eric@longwalkwoodworking.com,Quick question for Eric Diven,Eric Diven,general,"Brattleboro, VT",PENDING
+4,Day 4 — Ramp up,2026-05-10,10:00:00,chris@chrisericsonfurniture.com,Chris Ericson — getting found online in Burlington?,Chris Ericson,general,"Burlington, VT",PENDING
+4,Day 4 — Ramp up,2026-05-10,10:01:30,bob@gasperetti.com,Helping Bob Gasperetti reach more customers,Bob Gasperetti,general,"Brattleboro, VT",PENDING
+4,Day 4 — Ramp up,2026-05-10,10:03:00,gcabmak@gmail.com,Helping Greg Goodman reach more customers,Greg Goodman,general,"Montpelier, VT",PENDING
+4,Day 4 — Ramp up,2026-05-10,10:04:30,dho@davidhurwitzoriginals.com,A simple idea for David Hurwitz,David Hurwitz,general,"Burlington, VT",PENDING
+4,Day 4 — Ramp up,2026-05-10,10:06:00,david@lewiswoodshop.com,Quick question for David Lewis,David Lewis,general,"Brattleboro, VT",PENDING
+4,Day 4 — Ramp up,2026-05-10,10:07:30,johnlomasfurniture@gmail.com,Quick question for John Lomas,John Lomas,general,"Montpelier, VT",PENDING
+4,Day 4 — Ramp up,2026-05-10,10:09:00,wardjoyce1@hotmail.com,Burlington homeowners search before they hire — is Ward Joyce Design showing up?,Ward Joyce Design,construction,"Burlington, VT",PENDING
