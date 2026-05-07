@@ -484,18 +484,21 @@ window.openOutreach = function(name, email, country, leadIndex) {
 
 // Event Listeners
 function initEventListeners() {
-    // Logout
-    document.getElementById('btn-logout').addEventListener('click', () => {
-        localStorage.removeItem('user');
-        localStorage.removeItem('auth_token');
-        
-        if (window.location.protocol === 'file:' || 
-           ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '5000')) {
-            window.location.href = 'login.html';
-        } else {
-            window.location.href = '/';
-        }
-    });
+    // Logout (guarded)
+    const logoutBtn = document.getElementById('btn-logout');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('user');
+            localStorage.removeItem('auth_token');
+            
+            if (window.location.protocol === 'file:' || 
+               ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '5000')) {
+                window.location.href = 'login.html';
+            } else {
+                window.location.href = '/';
+            }
+        });
+    }
 
     // Close Modals
     document.getElementById('close-modal').addEventListener('click', () => {
