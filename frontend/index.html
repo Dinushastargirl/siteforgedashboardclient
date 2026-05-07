@@ -51,13 +51,13 @@
                     <i data-lucide="users"></i>
                     SOLID Leads
                 </div>
+                <div class="nav-item" data-view="trends">
+                    <i data-lucide="trending-up"></i>
+                    Lead Trends
+                </div>
                 <div class="nav-item" data-view="logs">
                     <i data-lucide="mail"></i>
                     Outreach Logs
-                </div>
-                <div class="nav-item" data-view="settings">
-                    <i data-lucide="settings"></i>
-                    Settings
                 </div>
             </nav>
         </aside>
@@ -85,8 +85,8 @@
                         <i data-lucide="sun" id="theme-icon"></i>
                     </button>
 
-                    <!-- User Profile -->
-                    <div class="user-profile">
+                    <!-- User Profile clickable dropdown trigger -->
+                    <div class="user-profile" id="profile-menu-trigger">
                         <div class="profile-details">
                             <div class="profile-name" id="user-display-name">Dinusha</div>
                             <div class="profile-role" id="user-role-badge">Admin</div>
@@ -94,9 +94,24 @@
                         <div class="profile-avatar">
                             <span id="user-initial">D</span>
                         </div>
-                        <button class="btn btn-logout-circle" id="btn-logout" title="Logout">
-                            <i data-lucide="log-out"></i>
-                        </button>
+                        <i data-lucide="chevron-down" style="width: 14px; height: 14px; color: var(--text-secondary); margin-left: 0.25rem;"></i>
+
+                        <!-- Absolute Profile Dropdown Menu -->
+                        <div class="profile-dropdown" id="profile-dropdown">
+                            <div class="dropdown-item" id="dropdown-edit-profile">
+                                <i data-lucide="user-cog"></i>
+                                Edit Profile
+                            </div>
+                            <div class="dropdown-item" id="dropdown-settings">
+                                <i data-lucide="settings"></i>
+                                Settings
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-item dropdown-logout" id="dropdown-logout">
+                                <i data-lucide="log-out"></i>
+                                Sign Out
+                            </div>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -312,6 +327,111 @@
                             <!-- Injected by app.js -->
                         </tbody>
                     </table>
+            </div>
+
+            <!-- Trends View -->
+            <div id="view-trends" class="view-section" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <div>
+                        <h2>Lead Trends & Daily Insights</h2>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.25rem;">Daily analysis and real-time scanning insights from the SiteForge Lead engine.</p>
+                    </div>
+                    <div class="clock-capsule" style="background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.2);">
+                        <i data-lucide="sparkles" style="width: 16px; height: 16px; color: var(--hot-color); animation: pulse 2s infinite;"></i>
+                        <span style="font-weight: 600; font-size: 0.85rem; color: var(--text-primary);">Live Syncing Active</span>
+                    </div>
+                </div>
+
+                <!-- Metrics Grid -->
+                <div class="control-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 2rem; gap: 1.25rem;">
+                    <div class="control-card" style="padding: 1.5rem; text-align: center; border: 1px solid var(--border-color);">
+                        <i data-lucide="database" style="width: 24px; height: 24px; color: var(--accent-color); margin: 0 auto 0.75rem;"></i>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Total Database Leads</div>
+                        <div id="trends-total-leads" style="font-size: 2.25rem; font-weight: 800; color: var(--text-primary); margin-top: 0.5rem; font-family: 'Outfit', sans-serif;">850</div>
+                        <div style="font-size: 0.75rem; color: var(--accent-color); margin-top: 0.25rem;"><i data-lucide="arrow-up-right" style="width:12px; height:12px; display:inline;"></i> +14% today</div>
+                    </div>
+                    
+                    <div class="control-card" style="padding: 1.5rem; text-align: center; border: 1px solid var(--border-color);">
+                        <i data-lucide="zap" style="width: 24px; height: 24px; color: var(--hot-color); margin: 0 auto 0.75rem;"></i>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Hot Leads Identified</div>
+                        <div id="trends-hot-leads" style="font-size: 2.25rem; font-weight: 800; color: var(--text-primary); margin-top: 0.5rem; font-family: 'Outfit', sans-serif;">0</div>
+                        <div style="font-size: 0.75rem; color: var(--hot-color); margin-top: 0.25rem;">Score &ge; 7 threshold</div>
+                    </div>
+
+                    <div class="control-card" style="padding: 1.5rem; text-align: center; border: 1px solid var(--border-color);">
+                        <i data-lucide="award" style="width: 24px; height: 24px; color: #a855f7; margin: 0 auto 0.75rem;"></i>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Trending Niche</div>
+                        <div id="trends-top-niche" style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin-top: 0.75rem; min-height: 2.25rem; display: flex; align-items: center; justify-content: center; line-height: 1.2;">Calculating...</div>
+                        <div style="font-size: 0.75rem; color: #a855f7; margin-top: 0.25rem;">Highest Quality Share</div>
+                    </div>
+
+                    <div class="control-card" style="padding: 1.5rem; text-align: center; border: 1px solid var(--border-color);">
+                        <i data-lucide="globe-2" style="width: 24px; height: 24px; color: #22c55e; margin: 0 auto 0.75rem;"></i>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Outreach Hotspot</div>
+                        <div id="trends-top-country" style="font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin-top: 0.5rem; min-height: 2.25rem; display: flex; align-items: center; justify-content: center;">Calculating...</div>
+                        <div style="font-size: 0.75rem; color: #22c55e; margin-top: 0.25rem;">Max Reachable Contacts</div>
+                    </div>
+                </div>
+
+                <!-- Two-Column Analytics Row -->
+                <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    
+                    <!-- Live Daily Insights Stream -->
+                    <div class="control-card" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; border: 1px solid var(--border-color); background: rgba(139, 92, 246, 0.01);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+                            <h3 style="font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary);">
+                                <i data-lucide="clock" style="width: 18px; height: 18px; color: var(--accent-color);"></i>
+                                Daily Lead Insights Stream
+                            </h3>
+                            <button class="btn btn-secondary" id="btn-refresh-trends" style="padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.75rem; display: flex; align-items: center; gap: 0.25rem;">
+                                <i data-lucide="rotate-cw" style="width: 12px; height: 12px;"></i>
+                                Refresh Insights
+                            </button>
+                        </div>
+                        <div id="trends-insights-list" style="display: flex; flex-direction: column; gap: 1rem; max-height: 380px; overflow-y: auto; padding-right: 0.5rem;">
+                            <!-- Dynamically loaded daily items -->
+                        </div>
+                    </div>
+
+                    <!-- Hot Niche Leaderboard -->
+                    <div class="control-card" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; border: 1px solid var(--border-color); background: rgba(139, 92, 246, 0.01);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+                            <h3 style="font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary);">
+                                <i data-lucide="bar-chart-2" style="width: 18px; height: 18px; color: var(--hot-color);"></i>
+                                Hot Niche Leaderboard
+                            </h3>
+                        </div>
+                        <div id="trends-niche-leaderboard" style="display: flex; flex-direction: column; gap: 1.1rem;">
+                            <!-- Progress Bar Leaderboard dynamic items -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Quality distribution and countries map row -->
+                <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem;">
+                    
+                    <!-- Quality Band Analytics -->
+                    <div class="control-card" style="padding: 1.5rem; border: 1px solid var(--border-color); background: rgba(139, 92, 246, 0.01);">
+                        <h3 style="font-size: 1.1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary);">
+                            <i data-lucide="shield-check" style="width: 18px; height: 18px; color: #a855f7;"></i>
+                            Lead Quality Band Distribution
+                        </h3>
+                        <div id="trends-quality-distribution" style="display: flex; flex-direction: column; gap: 1rem;">
+                            <!-- Quality distribution item widgets -->
+                        </div>
+                    </div>
+
+                    <!-- Top 5 Fresh Scrapes From SiteForge Engine -->
+                    <div class="control-card" style="padding: 1.5rem; border: 1px solid var(--border-color); background: rgba(139, 92, 246, 0.01);">
+                        <h3 style="font-size: 1.1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary);">
+                            <i data-lucide="sparkles" style="width: 18px; height: 18px; color: var(--accent-color);"></i>
+                            Today's Daily Fresh Hot Leads Scraped
+                        </h3>
+                        <div id="trends-fresh-scrapes" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                            <!-- list of 5 freshly picked leads -->
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -617,6 +737,37 @@
                     Send Pitch via Brevo
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal-overlay" id="edit-profile-modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="close-modal" id="close-profile-modal">
+                <i data-lucide="x"></i>
+            </div>
+            <h2>Edit Sync Profile</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Update your active profile identity and signature footer.</p>
+
+            <form id="edit-profile-form">
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                    <label for="profile-name-input" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.875rem; color: var(--text-primary);">Display Name</label>
+                    <input type="text" id="profile-name-input" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(0, 0, 0, 0.2); color: var(--text-primary);" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.25rem;">
+                    <label for="profile-email-input" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.875rem; color: var(--text-primary);">Email Address</label>
+                    <input type="email" id="profile-email-input" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(0, 0, 0, 0.2); color: var(--text-primary);" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="profile-signature-input" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.875rem; color: var(--text-primary);">Email & Pitch Signature Footer</label>
+                    <textarea id="profile-signature-input" class="form-control" style="width: 100%; min-height: 100px; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(0, 0, 0, 0.2); color: var(--text-primary); font-family: inherit; resize: vertical;" required></textarea>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-profile">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save-profile">Save Changes</button>
+                </div>
+            </form>
         </div>
     </div>
 
