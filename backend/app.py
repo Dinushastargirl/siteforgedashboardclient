@@ -57,6 +57,82 @@ def get_leads_api():
     leads = get_leads()
     return jsonify(leads)
 
+@app.route('/api/send-email', methods=['POST'])
+def send_email():
+    data = request.json or {}
+    api_key = data.get('api_key')
+    sender_name = data.get('sender_name', 'SiteForge Team')
+    sender_email = data.get('sender_email')
+    to_email = data.get('to_email')
+    subject = data.get('subject')
+    body = data.get('body')
+    
+    if not api_key:
+        return jsonify({'success': False, 'message': 'Brevo API Key is missing. Check your Settings.'}), 400
+    if not sender_email or not to_email:
+        return jsonify({'success': False, 'message': 'Sender and Recipient emails are required.'}), 400
+        
+    # Construct Brevo Transactional Email payload
+    html_content = body.replace('\n', '<br>')
+    payload = {
+        "sender": {
+            "name": sender_name,
+            "email": sender_email
+        },
+        "to": [
+            {
+                "email": to_email
+            }
+        ],
+        "subject": subject,
+        "htmlContent": f"<html><body><p>{html_content}</p></body></html>"
+    }
+    
+    import urllib.request
+    from urllib.error import HTTPError, URLError
+    
+    req = urllib.request.Request(
+        'https://api.api-brevo.com/v3/smtp/email' if 'api-brevo.com' in api_key else 'https://api.brevo.com/v3/smtp/email',
+        data=json.dumps(payload).encode('utf-8'),
+        headers={
+            'api-key': api_key,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        method='POST'
+    )
+    
+    try:
+        with urllib.request.urlopen(req) as response:
+            res_body = response.read().decode('utf-8')
+            res_data = json.loads(res_body) if res_body else {}
+            return jsonify({
+                'success': True,
+                'message': 'Email sent successfully via Brevo API!',
+                'data': res_data
+            })
+    except HTTPError as e:
+        err_msg = e.read().decode('utf-8')
+        try:
+            err_data = json.loads(err_msg)
+            message = err_data.get('message', f"Brevo API Error: {err_data.get('code', 'HTTP ' + str(e.code))}")
+        except:
+            message = f"Brevo HTTP Error {e.code}: {err_msg}"
+        return jsonify({
+            'success': False,
+            'message': message
+        }), e.code
+    except URLError as e:
+        return jsonify({
+            'success': False,
+            'message': f"Brevo Connection Error: {e.reason}"
+        }), 500
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f"Unexpected error: {str(e)}"
+        }), 500
+
 # Serve static files for the frontend
 @app.route('/')
 def serve_index():
@@ -74,7 +150,7 @@ def serve_static(path):
 
 if __name__ == '__main__':
     print("=======================================")
-    print("Starting SiteForge Lead Command Center")
+    print("Starting MyLeads Lead Command Center")
     print("Running at: http://127.0.0.1:5000")
     print("=======================================")
     app.run(port=5000, debug=True)

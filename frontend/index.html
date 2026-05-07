@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SITEFORGE | Lead Command Center</title>
+    <title>My Leads</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
     <script>
         // Check authentication
@@ -15,17 +17,30 @@
         if (!authUser) {
             window.location.href = '/';
         }
-        
-        // Auto-apply theme from local storage
-        if (localStorage.getItem('theme') === 'light') {
+
+        // Auto-apply theme based on time or local storage
+        const currentHour = new Date().getHours();
+        const isEvening = currentHour >= 18 || currentHour < 6;
+
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme === 'dark' || (!savedTheme && isEvening)) {
+            document.body.classList.add('dark-theme');
+        } else if (savedTheme === 'light' || (!savedTheme && !isEvening)) {
             document.body.classList.remove('dark-theme');
         }
     </script>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
     <div class="app-container">
-        <aside>
-            <div class="logo">
-                <i data-lucide="zap"></i>
-                SITEFORGE
+        <aside id="sidebar">
+            <div class="logo" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="zap"></i>
+                    MyLeads
+                </div>
+                <button id="close-sidebar" class="btn-close-sidebar">
+                    <i data-lucide="x"></i>
+                </button>
             </div>
             <nav>
                 <div class="nav-item active" data-view="dashboard">
@@ -49,49 +64,123 @@
 
         <main>
             <header class="header">
-                <div>
-                    <h1>Lead Command Center</h1>
-                    <p style="color: var(--text-secondary)">Manage your solid leads and execute outreach sequences.</p>
+                <div class="header-title-container">
+                    <button id="btn-hamburger" class="btn-hamburger">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <div>
+                        <h1 class="header-headline">Lead Command Center</h1>
+                        <p class="header-subtitle">Manage your solid leads and execute outreach sequences.</p>
+                    </div>
                 </div>
-                <div style="display: flex; align-items: center; gap: 1.5rem;">
-                    <!-- Realtime Clock -->
-                    <div id="realtime-clock" style="font-family: monospace; font-size: 1.1rem; color: var(--accent-color); font-weight: bold;">
-                        00:00:00
+                <div class="header-actions">
+                    <!-- Realtime Clock Widget -->
+                    <div class="clock-capsule">
+                        <span class="live-dot-pulse"></span>
+                        <div id="realtime-clock" class="digital-time">00:00:00</div>
                     </div>
-                    
-                    <!-- Global Niche Selector -->
-                    <div class="niche-selector-container" style="display: flex; align-items: center; gap: 0.5rem;">
-                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Niche:</span>
-                        <select id="global-niche-select" style="padding: 0.5rem 2rem 0.5rem 0.75rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--text-primary); font-weight: 600; cursor: pointer; outline: none; appearance: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220%22%20%220%22%20%2224%22%20%2224%22 fill=%22none%22 stroke=%22%236b7280%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 class=%22lucide%22><polyline points=%226%209%2012%2015%2018%209%22></polyline></svg>'); background-repeat: no-repeat; background-position: right 6px center; background-size: 16px;">
-                            <option value="All" selected>All Niches (250 Real Leads)</option>
-                            <option value="Georgia">Georgia (Vintage & Books)</option>
-                            <option value="Kentucky">Kentucky (Bakeries & Deli)</option>
-                            <option value="Mississippi">Mississippi (Barbers & Salons)</option>
-                            <option value="Vermont">Vermont (Maple & Farms)</option>
-                            <option value="West Virginia">West Virginia (Diners & Services)</option>
-                        </select>
-                    </div>
-                    
+
                     <!-- Theme Toggle -->
-                    <button class="btn btn-secondary" id="theme-toggle" style="padding: 0.5rem; border-radius: 50%;">
+                    <button class="btn btn-theme-toggle" id="theme-toggle" title="Switch Theme">
                         <i data-lucide="sun" id="theme-icon"></i>
                     </button>
-                    
+
                     <!-- User Profile -->
-                    <div class="user-profile" style="display: flex; align-items: center; gap: 0.75rem;">
-                        <div style="text-align: right;">
-                            <div style="font-weight: bold; font-size: 0.9rem;" id="user-display-name">Dinusha</div>
-                            <div style="font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase;" id="user-role-badge">Admin</div>
+                    <div class="user-profile">
+                        <div class="profile-details">
+                            <div class="profile-name" id="user-display-name">Dinusha</div>
+                            <div class="profile-role" id="user-role-badge">Admin</div>
                         </div>
-                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-color), #818cf8); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">
+                        <div class="profile-avatar">
                             <span id="user-initial">D</span>
                         </div>
-                        <button class="btn btn-secondary" id="btn-logout" style="padding: 0.4rem; margin-left: 0.5rem;" title="Logout">
-                            <i data-lucide="log-out" style="width: 16px; height: 16px;"></i>
+                        <button class="btn btn-logout-circle" id="btn-logout" title="Logout">
+                            <i data-lucide="log-out"></i>
                         </button>
                     </div>
                 </div>
             </header>
+
+            <!-- Horizontal Glassmorphic Control Hub Filter Strip -->
+            <div class="control-hub">
+                <div class="control-grid">
+                    <!-- Country Selector Card -->
+                    <div class="control-card country-selector-container">
+                        <div class="control-card-header-row">
+                            <i data-lucide="globe" class="control-icon country-icon"></i>
+                            <span class="control-card-label">Country Pool</span>
+                        </div>
+                        <select id="global-country-select" class="control-select">
+                            <option value="All" selected>All Countries</option>
+                            <optgroup label="Already Live">
+                                <option value="USA">🇺🇸 USA</option>
+                                <option value="UK">🇬🇧 United Kingdom (UK)</option>
+                                <option value="UAE">🇦🇪 United Arab Emirates (UAE)</option>
+                                <option value="Indonesia">🇮🇩 Indonesia</option>
+                                <option value="Ethiopia">🇪🇹 Ethiopia</option>
+                                <option value="Canada">🇨🇦 Canada</option>
+                                <option value="Sweden">🇸🇪 Sweden</option>
+                            </optgroup>
+                            <optgroup label="Phase 1 (New)">
+                                <option value="Nigeria">🇳🇬 Nigeria</option>
+                                <option value="Philippines">🇵🇭 Philippines</option>
+                                <option value="Kenya">🇰🇪 Kenya</option>
+                                <option value="Ghana">🇬🇭 Ghana</option>
+                            </optgroup>
+                            <optgroup label="Phase 2 (New)">
+                                <option value="India">🇮🇳 India</option>
+                                <option value="Brazil">🇧🇷 Brazil</option>
+                                <option value="South Africa">🇿🇦 South Africa</option>
+                                <option value="Malaysia">🇲🇾 Malaysia</option>
+                                <option value="Australia">🇦🇺 Australia</option>
+                                <option value="Saudi Arabia">🇸🇦 Saudi Arabia</option>
+                                <option value="Turkey">🇹🇷 Turkey</option>
+                                <option value="Mexico">🇲🇽 Mexico</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Niche Selector Card -->
+                    <div class="control-card niche-selector-container">
+                        <div class="control-card-header-row">
+                            <i data-lucide="tag" class="control-icon niche-icon"></i>
+                            <span class="control-card-label">Industry Niche</span>
+                        </div>
+                        <select id="global-niche-select" class="control-select">
+                            <option value="All" selected>All Niches</option>
+                            <option value="Mobile Beauty & Nails">Mobile Beauty & Nails</option>
+                            <option value="Handyman & Maintenance">Handyman & Maintenance</option>
+                            <option value="Mobile Hairdresser">Mobile Hairdresser</option>
+                            <option value="Cleaning Services">Cleaning Services</option>
+                            <option value="Mobile Massage">Mobile Massage</option>
+                            <option value="Gardening & Landscaping">Gardening & Landscaping</option>
+                            <option value="Pet Services">Pet Services</option>
+                            <option value="Mobile Car Detailing">Mobile Car Detailing</option>
+                            <option value="Catering & Home Food">Catering & Home Food</option>
+                            <option value="Photography">Photography</option>
+                            <option value="Tutoring & Education">Tutoring & Education</option>
+                            <option value="Tailoring & Alterations">Tailoring & Alterations</option>
+                            <option value="Window Cleaning">Window Cleaning</option>
+                            <option value="Skip Hire">Skip Hire</option>
+                            <option value="Home Repair">Home Repair</option>
+                            <option value="IT Support">IT Support</option>
+                        </select>
+                    </div>
+
+                    <!-- Contact Selector Card -->
+                    <div class="control-card contact-selector-container">
+                        <div class="control-card-header-row">
+                            <i data-lucide="message-square" class="control-icon contact-icon"></i>
+                            <span class="control-card-label">Outreach Method</span>
+                        </div>
+                        <select id="global-contact-select" class="control-select">
+                            <option value="All" selected>All Leads</option>
+                            <option value="Email">Has Email</option>
+                            <option value="WhatsApp">Has WhatsApp</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
             <!-- Dashboard View -->
             <div id="view-dashboard" class="view-section active">
@@ -134,8 +223,9 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                     <h2>SOLID Leads Directory</h2>
                     <div style="display: flex; gap: 1rem; align-items: center;">
-                        <input type="text" id="directory-search-input" placeholder="Search leads..." style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--text-primary); width: 250px;">
-                        
+                        <input type="text" id="directory-search-input" placeholder="Search leads..."
+                            style="padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); color: var(--text-primary); width: 250px;">
+
                         <!-- Filter Dropdown Container -->
                         <div class="filter-dropdown-container">
                             <button class="btn btn-primary" id="btn-directory-filter">
@@ -153,7 +243,11 @@
                                     <input type="checkbox" id="filter-status-warm" checked>
                                     <span>WARM (Has Website)</span>
                                 </label>
-                                
+                                <label class="dropdown-option">
+                                    <input type="checkbox" id="filter-status-cold" checked>
+                                    <span>COLD</span>
+                                </label>
+
                                 <div class="dropdown-section-title">Filter by Quality Score</div>
                                 <label class="dropdown-option">
                                     <input type="radio" name="filter-quality" id="filter-quality-all" checked>
@@ -165,13 +259,11 @@
                                 </label>
                                 <label class="dropdown-option">
                                     <input type="radio" name="filter-quality" id="filter-quality-good">
-                                    <span>Established (>= 4)</span>
-                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Leads Directory Table -->
                 <div class="leads-table-container">
                     <table class="leads-table">
@@ -196,12 +288,13 @@
             <div id="view-logs" class="view-section" style="display: none;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                     <h2>Outreach Logs</h2>
-                    <button class="btn btn-secondary" id="btn-clear-logs" style="color: var(--hot-color); border-color: rgba(244, 63, 94, 0.2);">
+                    <button class="btn btn-secondary" id="btn-clear-logs"
+                        style="color: var(--hot-color); border-color: rgba(244, 63, 94, 0.2);">
                         <i data-lucide="trash-2" style="width: 16px;"></i>
                         Clear History
                     </button>
                 </div>
-                
+
                 <!-- Logs Table -->
                 <div class="leads-table-container">
                     <table class="leads-table">
@@ -229,7 +322,8 @@
                     <div class="chrome-search-container">
                         <div class="chrome-search-box">
                             <i data-lucide="search"></i>
-                            <input type="text" id="chrome-settings-search" class="chrome-search-input" placeholder="Search settings">
+                            <input type="text" id="chrome-settings-search" class="chrome-search-input"
+                                placeholder="Search settings">
                         </div>
                     </div>
 
@@ -239,7 +333,7 @@
                         <div class="chrome-settings-sidebar">
                             <div class="chrome-sidebar-item active" data-settings-tab="you">
                                 <i data-lucide="user"></i>
-                                You and SiteForge
+                                You and MyLeads
                             </div>
                             <div class="chrome-sidebar-item" data-settings-tab="outreach">
                                 <i data-lucide="file-text"></i>
@@ -270,38 +364,55 @@
 
                         <!-- Right Content Panels (Chrome Style) -->
                         <div class="chrome-settings-content">
-                            <!-- 1. You and SiteForge -->
+                            <!-- 1. You and MyLeads -->
                             <div id="settings-group-you" class="chrome-settings-group">
-                                <h3 class="chrome-group-title">You and SiteForge</h3>
+                                <h3 class="chrome-group-title">You and MyLeads</h3>
                                 <div class="chrome-card">
                                     <!-- Sync Profile Row -->
                                     <div class="chrome-profile-card">
                                         <div class="chrome-profile-avatar" id="chrome-profile-avatar">D</div>
                                         <div class="chrome-profile-info">
-                                            <div class="chrome-profile-name" id="chrome-profile-name">Dinusha Pushparajah</div>
+                                            <div class="chrome-profile-name" id="chrome-profile-name">Dinusha
+                                                Pushparajah</div>
                                             <div class="chrome-profile-sync">
                                                 <i data-lucide="check-circle-2" class="chrome-sync-status-icon"></i>
-                                                Syncing to <span id="chrome-profile-email">dinushapushparajah@gmail.com</span>
+                                                Syncing to <span
+                                                    id="chrome-profile-email">dinushapushparajah@gmail.com</span>
                                             </div>
                                         </div>
                                         <button class="btn-chrome-outline" id="btn-sync-toggle">Turn off</button>
                                     </div>
                                     <!-- Active Sync Profile Account Select Dropdown -->
-                                    <div class="chrome-row" id="row-switch-profile" style="flex-direction: column; align-items: stretch; gap: 0.75rem; padding: 1.25rem 1rem; border-bottom: 1px solid var(--border-color);">
-                                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                                            <span class="chrome-row-label" style="font-weight: 600;">Active Chrome Sync Profile</span>
-                                            <span class="chrome-row-meta" style="color: var(--accent-color); font-weight: 600; font-size: 0.8rem; display: flex; align-items: center; gap: 0.25rem;">
-                                                <span class="badge-status-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                                    <div class="chrome-row" id="row-switch-profile"
+                                        style="flex-direction: column; align-items: stretch; gap: 0.75rem; padding: 1.25rem 1rem; border-bottom: 1px solid var(--border-color);">
+                                        <div
+                                            style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                            <span class="chrome-row-label" style="font-weight: 600;">Active Chrome Sync
+                                                Profile</span>
+                                            <span class="chrome-row-meta"
+                                                style="color: var(--accent-color); font-weight: 600; font-size: 0.8rem; display: flex; align-items: center; gap: 0.25rem;">
+                                                <span class="badge-status-dot"
+                                                    style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
                                                 Multi-Account Connected
                                             </span>
                                         </div>
-                                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.25rem 0; line-height: 1.4;">Select which local Chrome profile is active. This dynamically switches the outreach signature, avatar styling, and sync operator identity across the command center.</p>
-                                        <select id="setting-profile-select" class="chrome-input-field" style="width: 100%; border-radius: 8px; padding: 0.6rem; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); font-size: 0.875rem; cursor: pointer; outline: none; transition: border-color 0.2s;">
-                                            <option value="dinushapushparajah@gmail.com">Dinusha Pushparajah (dinushapushparajah@gmail.com)</option>
-                                            <option value="dinudinu4927@gmail.com">Dinusha Pushparajah - Personal (dinudinu4927@gmail.com)</option>
-                                            <option value="vorkglobal@gmail.com">vorkglobal (vorkglobal@gmail.com)</option>
-                                            <option value="aurumstudiocctv@gmail.com">Aurumstudio (aurumstudiocctv@gmail.com)</option>
-                                            <option value="littleheartbaker0010@gmail.com">Littleheart (littleheartbaker0010@gmail.com)</option>
+                                        <p
+                                            style="font-size: 0.8rem; color: var(--text-secondary); margin: 0 0 0.25rem 0; line-height: 1.4;">
+                                            Select which local Chrome profile is active. This dynamically switches the
+                                            outreach signature, avatar styling, and sync operator identity across the
+                                            command center.</p>
+                                        <select id="setting-profile-select" class="chrome-input-field"
+                                            style="width: 100%; border-radius: 8px; padding: 0.6rem; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); font-size: 0.875rem; cursor: pointer; outline: none; transition: border-color 0.2s;">
+                                            <option value="dinushapushparajah@gmail.com">Dinusha Pushparajah
+                                                (dinushapushparajah@gmail.com)</option>
+                                            <option value="dinudinu4927@gmail.com">Dinusha Pushparajah - Personal
+                                                (dinudinu4927@gmail.com)</option>
+                                            <option value="vorkglobal@gmail.com">vorkglobal (vorkglobal@gmail.com)
+                                            </option>
+                                            <option value="aurumstudiocctv@gmail.com">Aurumstudio
+                                                (aurumstudiocctv@gmail.com)</option>
+                                            <option value="littleheartbaker0010@gmail.com">Littleheart
+                                                (littleheartbaker0010@gmail.com)</option>
                                         </select>
                                     </div>
                                     <!-- Menu Rows -->
@@ -311,7 +422,8 @@
                                     </div>
                                     <div class="chrome-row" id="row-manage-account">
                                         <span class="chrome-row-label">Manage your Google Account</span>
-                                        <span class="chrome-row-meta"><i data-lucide="external-link" style="width:14px; height:14px;"></i></span>
+                                        <span class="chrome-row-meta"><i data-lucide="external-link"
+                                                style="width:14px; height:14px;"></i></span>
                                     </div>
                                     <div class="chrome-row" id="row-custom-profile">
                                         <span class="chrome-row-label">Customise your Chrome profile</span>
@@ -328,17 +440,30 @@
                             <div id="settings-group-outreach" class="chrome-settings-group" style="display: none;">
                                 <h3 class="chrome-group-title">Autofill and outreach</h3>
                                 <div class="chrome-card">
-                                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">Configure default email subjects and scoring criteria for automated pitches.</p>
-                                    
+                                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">
+                                        Configure default email subjects, scoring criteria, and API integrations for
+                                        automated pitches.</p>
+
                                     <div class="chrome-form-control">
                                         <label class="chrome-label">Outreach Template Subject</label>
-                                        <input type="text" id="setting-subject-input" class="chrome-input-field" value="Need a new website for your plumbing business?">
+                                        <input type="text" id="setting-subject-input" class="chrome-input-field"
+                                            value="Need a new website for your plumbing business?">
                                     </div>
                                     <div class="chrome-form-control" style="margin-top: 1.25rem;">
                                         <label class="chrome-label">Minimum Quality Score Filter</label>
-                                        <input type="number" id="setting-score-input" class="chrome-input-field" value="1" min="1" max="10">
+                                        <input type="number" id="setting-score-input" class="chrome-input-field"
+                                            value="1" min="1" max="10">
                                     </div>
-                                    
+                                    <div class="chrome-form-control" style="margin-top: 1.25rem;">
+                                        <label class="chrome-label">Brevo SMTP API Key</label>
+                                        <input type="password" id="setting-brevo-api-key" class="chrome-input-field"
+                                            placeholder="xkeysib-..." value="">
+                                        <span
+                                            style="font-size:0.75rem; color:var(--text-secondary); margin-top: 0.25rem; display:block;">API
+                                            key used to dispatch emails via Brevo. Will be saved securely in local
+                                            browser storage.</span>
+                                    </div>
+
                                     <div style="display: flex; justify-content: flex-end; margin-top: 2rem;">
                                         <button class="btn btn-primary" id="btn-save-chrome-settings">
                                             <i data-lucide="save"></i>
@@ -352,9 +477,12 @@
                             <div id="settings-group-privacy" class="chrome-settings-group" style="display: none;">
                                 <h3 class="chrome-group-title">Privacy and security</h3>
                                 <div class="chrome-card">
-                                    <div class="chrome-row" onclick="alert('Outreach history logs have been cleared successfully!')">
-                                        <span class="chrome-row-label" style="color: var(--hot-color);">Clear outreach history and cache</span>
-                                        <span class="chrome-row-meta"><i data-lucide="trash-2" style="color: var(--hot-color);"></i></span>
+                                    <div class="chrome-row"
+                                        onclick="alert('Outreach history logs have been cleared successfully!')">
+                                        <span class="chrome-row-label" style="color: var(--hot-color);">Clear outreach
+                                            history and cache</span>
+                                        <span class="chrome-row-meta"><i data-lucide="trash-2"
+                                                style="color: var(--hot-color);"></i></span>
                                     </div>
                                     <div class="chrome-row" onclick="alert('Session Token re-generated successfully.')">
                                         <span class="chrome-row-label">Reset login session authentication token</span>
@@ -362,7 +490,8 @@
                                     </div>
                                     <div class="chrome-row">
                                         <span class="chrome-row-label">Safe Browsing protection level</span>
-                                        <span class="chrome-row-meta">Standard protection <i data-lucide="chevron-right"></i></span>
+                                        <span class="chrome-row-meta">Standard protection <i
+                                                data-lucide="chevron-right"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -374,19 +503,24 @@
                                     <div class="chrome-row" style="cursor: default;">
                                         <div>
                                             <span class="chrome-row-label" style="display:block;">Memory Saver</span>
-                                            <span style="font-size:0.8rem; color:var(--text-secondary)">When on, SiteForge frees up memory from inactive lead detail tabs.</span>
+                                            <span style="font-size:0.8rem; color:var(--text-secondary)">When on,
+                                                MyLeads frees up memory from inactive lead detail tabs.</span>
                                         </div>
                                         <span class="chrome-row-meta">
-                                            <input type="checkbox" checked style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
+                                            <input type="checkbox" checked
+                                                style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
                                         </span>
                                     </div>
                                     <div class="chrome-row" style="cursor: default;">
                                         <div>
-                                            <span class="chrome-row-label" style="display:block;">Preload Facebook and Email info</span>
-                                            <span style="font-size:0.8rem; color:var(--text-secondary)">Speeds up lead card loading and background quality validation.</span>
+                                            <span class="chrome-row-label" style="display:block;">Preload Facebook and
+                                                Email info</span>
+                                            <span style="font-size:0.8rem; color:var(--text-secondary)">Speeds up lead
+                                                card loading and background quality validation.</span>
                                         </div>
                                         <span class="chrome-row-meta">
-                                            <input type="checkbox" checked style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
+                                            <input type="checkbox" checked
+                                                style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
                                         </span>
                                     </div>
                                 </div>
@@ -403,12 +537,14 @@
                                     <div class="chrome-row">
                                         <span class="chrome-row-label">Show Home button in sidebar</span>
                                         <span class="chrome-row-meta">
-                                            <input type="checkbox" checked style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
+                                            <input type="checkbox" checked
+                                                style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
                                         </span>
                                     </div>
                                     <div class="chrome-row">
                                         <span class="chrome-row-label">Font size</span>
-                                        <span class="chrome-row-meta">Medium (recommended) <i data-lucide="chevron-right"></i></span>
+                                        <span class="chrome-row-meta">Medium (recommended) <i
+                                                data-lucide="chevron-right"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -419,16 +555,19 @@
                                 <div class="chrome-card">
                                     <div class="chrome-row" style="cursor: default;">
                                         <span class="chrome-row-label">Backend Python Server URL</span>
-                                        <span class="chrome-row-meta" style="font-family:monospace; color:var(--accent-color)">http://127.0.0.1:5000</span>
+                                        <span class="chrome-row-meta"
+                                            style="font-family:monospace; color:var(--accent-color)">http://127.0.0.1:5000</span>
                                     </div>
                                     <div class="chrome-row" style="cursor: default;">
                                         <span class="chrome-row-label">Active Database Source</span>
-                                        <span class="chrome-row-meta" style="font-family:monospace;">master_leads.json</span>
+                                        <span class="chrome-row-meta"
+                                            style="font-family:monospace;">master_leads.json</span>
                                     </div>
                                     <div class="chrome-row" style="cursor: default;">
                                         <span class="chrome-row-label">Use hardware acceleration when available</span>
                                         <span class="chrome-row-meta">
-                                            <input type="checkbox" checked style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
+                                            <input type="checkbox" checked
+                                                style="width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-color);">
                                         </span>
                                     </div>
                                 </div>
@@ -438,10 +577,13 @@
                             <div id="settings-group-reset" class="chrome-settings-group" style="display: none;">
                                 <h3 class="chrome-group-title">Reset settings</h3>
                                 <div class="chrome-card">
-                                    <div class="chrome-row" onclick="if(confirm('Are you sure you want to restore original default settings? This cannot be undone.')) { alert('Settings restored successfully!'); }">
+                                    <div class="chrome-row"
+                                        onclick="if(confirm('Are you sure you want to restore original default settings? This cannot be undone.')) { alert('Settings restored successfully!'); }">
                                         <div>
-                                            <span class="chrome-row-label" style="display:block;">Restore settings to their original defaults</span>
-                                            <span style="font-size:0.8rem; color:var(--text-secondary)">Resets template subject, quality filters, and performance flags.</span>
+                                            <span class="chrome-row-label" style="display:block;">Restore settings to
+                                                their original defaults</span>
+                                            <span style="font-size:0.8rem; color:var(--text-secondary)">Resets template
+                                                subject, quality filters, and performance flags.</span>
                                         </div>
                                         <span class="chrome-row-meta"><i data-lucide="rotate-ccw"></i></span>
                                     </div>
@@ -456,23 +598,23 @@
 
     <!-- Outreach Modal -->
     <div class="modal-overlay" id="outreach-modal">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 600px;">
             <div class="close-modal" id="close-modal">
                 <i data-lucide="x"></i>
             </div>
             <h2 id="modal-title">Email Outreach</h2>
             <p id="modal-subtitle" style="color: var(--text-secondary); margin-bottom: 1.5rem;"></p>
-            
+
             <div class="email-preview" id="email-body"></div>
-            
-            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-                <button class="btn btn-primary" id="btn-copy">
+
+            <div style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: flex-end;">
+                <button class="btn btn-secondary" id="btn-copy" style="margin-right: auto;">
                     <i data-lucide="copy"></i>
                     Copy to Clipboard
                 </button>
-                <button class="btn btn-secondary" id="btn-gmail">
-                    <i data-lucide="external-link"></i>
-                    Open in Gmail
+                <button class="btn btn-primary" id="btn-send-brevo">
+                    <i data-lucide="send"></i>
+                    Send Pitch via Brevo
                 </button>
             </div>
         </div>
@@ -484,4 +626,5 @@
         lucide.createIcons();
     </script>
 </body>
+
 </html>
