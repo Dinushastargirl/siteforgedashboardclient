@@ -158,41 +158,25 @@ function calculateScore(lead) {
 }
 
 // Helper to get localized pre-filled WhatsApp templates
+// Helper to get localized pre-filled WhatsApp templates in a spiral round-robin format
 function getWhatsAppMsg(country, name) {
-    if (country === 'Nigeria') {
-        return `Hi ${name}! I came across ${name} on Facebook. You're doing great work — but a lot of your customers are searching Google and can't find you because you don't have a website yet. I build affordable professional websites for Nigerian businesses. Can I send you a free sample of what yours could look like? 🙏`;
-    } else if (country === 'Philippines') {
-        return `Hi ${name}! I saw ${name} on Facebook — love what you do! I noticed you don't have your own website yet. A lot of customers search Google first before messaging on Facebook, and you're missing them. I build websites for local Filipino businesses at very affordable rates. Want me to show you a free mock-up? 😊`;
-    } else if (country === 'Kenya') {
-        return `Hi ${name}! I found ${name} on Facebook — really impressive work. I help local Kenyan businesses get found on Google by building them a professional website. Right now your customers can only find you on Facebook, but Google is where new customers look first. Can I send you a free example of what your website could look like?`;
-    } else if (country === 'Ghana') {
-        return `Hi ${name}! I came across ${name} on Facebook. Your work looks amazing! I specialise in building websites for small businesses in Ghana so customers can find you on Google too. I'd love to show you a free mock-up — no commitment needed. Interested? 😊`;
-    } else if (country === 'India') {
-        return `Hi ${name}! I found ${name} on Facebook. Very impressive! I help small Indian businesses build affordable websites so customers can find them on Google. Right now most people searching for your service online can't find you. I'd love to send you a free website sample — shall I?`;
-    } else if (country === 'Brazil') {
-        return `Oi ${name}! Encontrei o ${name} no Facebook/Instagram — adorei! Percebi que você ainda não tem um site próprio. Muitos clientes procuram no Google e não te encontram. Eu crio sites profissionais para pequenos negócios a preços acessíveis. Posso te mandar um exemplo grátis? 😊`;
-    } else if (country === 'South Africa') {
-        return `Hi ${name}! I came across ${name} on Facebook — great work! I build professional websites for South African small businesses so customers can find you on Google. I'd love to put together a free mock-up for you to see what it could look like. Want me to send it over?`;
-    } else if (country === 'Malaysia') {
-        return `Hi ${name}! I saw ${name} on Facebook — looks great! I help local Malaysian businesses build websites so customers can find them on Google. Many people search online before messaging on WhatsApp — you could be getting a lot more clients. Can I show you a free sample site?`;
-    } else if (country === 'Australia') {
-        return `Hi ${name}, I came across ${name} on Facebook and love what you're doing. I noticed you don't have your own website yet — a lot of customers in Australia Google services before reaching out and you might be missing them. I build clean professional websites for local businesses. Happy to put together a free mock-up if you're interested?`;
-    } else if (country === 'Saudi Arabia') {
-        return `Hi ${name}, I found ${name} on Instagram. Great work! I help businesses in Saudi Arabia build professional websites so new customers can find them on Google. Many people search Google before contacting on WhatsApp. I'd be happy to show you a free sample — would that be useful?`;
-    } else if (country === 'Turkey') {
-        return `Merhaba ${name}! ${name}'i Instagram/Facebook'ta gördüm — çok güzel! Henüz bir web siteniz olmadığını fark ettim. Google'da arayan müşterileriniz sizi bulamıyor. Türk küçük işletmelere uygun fiyatlı web siteleri yapıyorum. Ücretsiz bir örnek gönderebilir miyim? 😊`;
-    } else if (country === 'Mexico') {
-        return `Hola ${name}! Vi ${name} en Facebook — me encanta lo que haces. Noté que todavía no tienes un sitio web propio. Muchos clientes buscan en Google antes de escribir por WhatsApp y te están perdiendo. Creo sitios web profesionales para negocios locales a precios accesibles. ¿Te mando un ejemplo gratis? 😊`;
-    } else if (country === 'UK' || country === 'Canada' || country === 'Sweden' || country === 'USA') {
-        return `Hi ${name}! I came across ${name} on Facebook and love what you're doing. I noticed you don't have a website yet — I build affordable sites for local businesses and I'd love to show you a free mock-up. Interested? 😊`;
-    } else if (country === 'UAE') {
-        return `Hi ${name}, I found ${name} on Instagram/Facebook. I specialise in building websites for businesses in the UAE. Many of your customers are searching Google and can't find you — I'd love to help. Can I show you a free sample?`;
-    } else if (country === 'Indonesia') {
-        return `Halo ${name}! Saya lihat ${name} di Facebook. Saya bantu bisnis lokal buat website profesional dengan harga terjangkau. Boleh saya kirim contoh gratis?`;
-    } else if (country === 'Ethiopia') {
-        return `Hello ${name}, I found ${name} on Facebook. I build affordable websites for local businesses. Many customers search Google and can't find you — I'd love to help. Can I show you a free example?`;
-    }
-    return `Hi ${name}! I noticed your business doesn't have a website yet — I build affordable websites for local businesses. Can I show you a free mockup?`;
+    const leadIndex = allLeadsCache.findIndex(l => (l.business_name || l.name) === name);
+    const templateIndex = leadIndex >= 0 ? (leadIndex % 10) : 0;
+    
+    const waTemplates = [
+        `Hi ${name}! I saw ${name} on Facebook. Love your work! I noticed you don't have a website yet. At SiteForge, we build affordable sites so local customers can find you on Google. Can I send a free homepage mock-up?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
+        `Hello ${name}! I'm Dinusha, CEO of SiteForge. I found your business profile and noticed you don't have your own website yet. A professional site gets you found on Google 24/7. Can I send you a free custom SiteForge design concept?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
+        `Hi ${name} Team! I found ${name} online and really love what you do. I noticed you don't have an active website. We at SiteForge build premium, fast websites that drive local bookings. Can I share a free live preview we designed for you?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
+        `Hi ${name}! I saw your local reviews and they are fantastic. I'm Dinusha, CEO of SiteForge. We specialize in building mobile-friendly websites for service providers. Would you like to see a free website layout draft for your business?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
+        `Hello ${name}! Did you know most local customers search Google before booking? I noticed ${name} doesn't have a website yet. At SiteForge, we make premium websites easy. Can I send you a free home page blueprint to check out?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
+        `Hi ${name}! I found ${name} on Facebook. I help local service businesses get more leads by building stunning custom websites. I've designed a free SiteForge homepage draft for you. Would you like me to send you the link?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
+        `Hi there ${name}! I saw your business page. Your service looks incredible, but you're missing out on Google search leads without a website. We build high-converting sites at SiteForge. Can I show you a free concept design?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
+        `Hello ${name} Team! This is Dinusha from SiteForge. I noticed you don't have a dedicated website. A professional site instantly upgrades your customer trust and Google ranking. Want to see a free website preview we pre-built for you?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
+        `Hi ${name}! Love your reviews! I'm the CEO of SiteForge. We build fast, beautiful websites that turn online visitors into paying customers. Would you be open to checking out a free homepage draft we created for ${name}?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
+        `Hi ${name}! I came across your service. I noticed you don't have a website yet. At SiteForge, we build premium websites tailored specifically for trade and local services. Can I send you a free, no-obligation preview draft?\n\n- Dinusha Pushparajah, CEO of SiteForge`
+    ];
+    
+    return waTemplates[templateIndex];
 }
 
 // Handlers for logging non-email contacts
@@ -398,21 +382,19 @@ function updateStats(leads) {
     document.getElementById('stat-avg').textContent = `${avgScore}/10`;
 }
 
-// Global variable for current email text and lead metadata
+// Global variables for current email draft and lead metadata
 let currentEmailText = '';
+let currentEmailSubject = '';
 let currentOutreachLeadName = '';
 let currentOutreachLeadEmail = '';
 
-// Open Outreach Modal
+// Open Outreach Modal with Spiral Templates assigning
 window.openOutreach = function(name, email) {
     currentOutreachLeadName = name;
     currentOutreachLeadEmail = email;
     
     const modal = document.getElementById('outreach-modal');
     document.getElementById('modal-subtitle').textContent = `Drafting pitch for ${name} (${email})`;
-    
-    const activeProfile = getActiveSyncProfile();
-    const signature = activeProfile.signature;
     
     let nicheLabel = currentNiche.toLowerCase();
     if (nicheLabel === 'all') {
@@ -426,17 +408,57 @@ window.openOutreach = function(name, email) {
     }
     
     const templates = [
-        `Hi ${name} Team,\n\nI noticed your business doesn't have an optimized website (or it's currently hard to find on mobile devices).\n\nSince most customers searching for ${nicheLabel} in your area are doing so on their phones, a modern, fast-loading website can instantly increase your bookings.\n\nI build high-converting websites specifically for ${nicheLabel} businesses. Would you be open to a quick chat to see how we could help you capture those missed leads?\n\nBest,\n${signature}`,
-        
-        `Hello ${name},\n\nI was looking for ${nicheLabel} services in the area and couldn't easily find a dedicated website for your business.\n\nMany of your potential customers use their smartphones to make quick decisions, and a professional digital presence is key to winning their trust.\n\nWe specialize in creating premium, mobile-friendly sites for ${nicheLabel} professionals. Let me know if you have a few minutes this week to discuss how we can upgrade your online footprint!\n\nCheers,\n${signature}`,
-        
-        `Hi there,\n\nMy name is ${signature} and I help ${nicheLabel} businesses scale up by improving their web presence.\n\nI came across ${name} recently and noticed you could benefit from a highly optimized, modern website. Having a reliable site acts as a 24/7 sales rep for your services.\n\nI'd love to share some quick ideas on how a new site could bring in more leads. Are you open to a brief chat?\n\nThanks,\n${signature}`
+        {
+            subject: `SiteForge Digital Audit: Website proposal for ${name}`,
+            body: `Hi ${name} Team,\n\nI noticed your business doesn't have an optimized website (or it's currently hard to find on mobile devices).\n\nSince most customers searching for ${nicheLabel} in your area are doing so on their phones, a modern, fast-loading website can instantly increase your bookings.\n\nAt SiteForge, we build high-converting websites specifically for ${nicheLabel} businesses. Would you be open to a quick chat to see how we could help you capture those missed leads?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+        },
+        {
+            subject: `Quick web question for ${name} from SiteForge`,
+            body: `Hello ${name} Team,\n\nI came across your profile and noticed that while your service is top-notch, you don't have a dedicated website listed online for customers to book directly.\n\nAt SiteForge, we design clean, modern websites that showcase your local ${nicheLabel} services and let clients book in seconds. We actually pre-built a professional design concept for ${name}.\n\nWould you like me to send you a link to your free SiteForge web preview?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+        },
+        {
+            subject: `Local Google Visibility Audit for ${name} | SiteForge`,
+            body: `Hi there,\n\nMy name is Dinusha Pushparajah and I'm the CEO of SiteForge. I noticed that when customers search for local ${nicheLabel} services online, ${name} doesn't have a website to show them.\n\nIn today's market, 87% of customers look at a website before booking a service. With SiteForge, we get your business fully set up with a premium, lightning-fast website that drives calls.\n\nCan I email you a free draft design of what your business website could look like?\n\nSincerely,\nDinusha Pushparajah\nCEO of SiteForge`
+        },
+        {
+            subject: `Proposal: Mobile-Optimized Website for ${name} by SiteForge`,
+            body: `Hi ${name} Team,\n\nI noticed that ${name} is highly recommended but doesn't have a dedicated web presence yet.\n\nOur team at SiteForge builds high-converting, mobile-first websites specifically for local ${nicheLabel} specialists. We handle everything: design, copy, hosting, and Google setup.\n\nWould you be interested in a free, 5-minute SiteForge web preview tailored for your business?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+        },
+        {
+            subject: `Partnership: Website launch proposal for ${name}`,
+            body: `Hello ${name},\n\nHope you are doing well. I lead the development team at SiteForge. We help local ${nicheLabel} businesses establish stunning digital footprints that stand out.\n\nI noticed ${name} is highly active but lacks a dedicated website. We've put together a modern, premium design draft specifically for your brand.\n\nLet me know if I can send you a free live preview of your SiteForge draft!\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+        },
+        {
+            subject: `Capture more online leads for ${name} - SiteForge`,
+            body: `Hi ${name} Team,\n\nA lot of local customers are searching Google for ${nicheLabel} services in your area, but they can't find ${name} because you don't have an active website.\n\nAt SiteForge, we bridge this gap by building premium websites that get found on Google and convert visitors into clients. We have created a free sample design for you.\n\nWould you like us to send you the free mock-up?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+        },
+        {
+            subject: `Upgrade your digital presence: ${name} x SiteForge`,
+            body: `Hi there,\n\nI was looking at local ${nicheLabel} service providers and found ${name}. Your reviews look spectacular, but a professional website would take your growth to the next level.\n\nAt SiteForge, we craft beautiful, high-speed websites that act as your 24/7 digital salesperson. We've pre-designed a custom homepage concept for your business.\n\nCan I share the free SiteForge live draft with you this week?\n\nWarm regards,\nDinusha Pushparajah\nCEO of SiteForge`
+        },
+        {
+            subject: `SiteForge Web Design: Elevating ${name}`,
+            body: `Hello ${name} Team,\n\nMany of your potential clients are looking for ${nicheLabel} services on their phones, and a professional website is the best way to earn their immediate trust.\n\nI'm the CEO of SiteForge, and we specialize in building affordable, secure, and modern websites for local service specialists. We have drafted a stunning homepage concept for ${name}.\n\nCould I send over a free, no-obligation link to your SiteForge preview?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+        },
+        {
+            subject: `Increase your local bookings at ${name} | SiteForge`,
+            body: `Hi ${name},\n\nDid you know that having a dedicated business website can increase local inquiry volume by up to 40%? I noticed ${name} doesn't have one online yet.\n\nAt SiteForge, we make it easy and affordable to get a professional web presence. Our team has already created a free ${nicheLabel} homepage blueprint for your business.\n\nAre you open to seeing this free SiteForge design sample?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+        },
+        {
+            subject: `Custom Web Proposal for ${name} from SiteForge`,
+            body: `Hello ${name} Team,\n\nI came across ${name} today and wanted to reach out. We help local ${nicheLabel} service businesses stand out online by building stunning, fast, and secure websites.\n\nI noticed you don't have your own website yet. Our SiteForge team has designed a custom homepage preview for you to review for free.\n\nLet me know if I can email you the live link!\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+        }
     ];
     
-    // Pick a template deterministically based on business name length so it's consistent for the same lead but varies across leads
-    const templateIndex = name.length % templates.length;
-    currentEmailText = templates[templateIndex];
+    // Pick a template sequentially in a round-robin "spiral" based on lead index in global cache
+    const leadIndex = allLeadsCache.findIndex(l => (l.business_name || l.name) === name);
+    const templateIndex = leadIndex >= 0 ? (leadIndex % 10) : 0;
     
+    const selectedTemplate = templates[templateIndex];
+    currentEmailText = selectedTemplate.body;
+    currentEmailSubject = selectedTemplate.subject;
+    
+    document.getElementById('modal-title').textContent = currentEmailSubject;
     document.getElementById('email-body').innerHTML = currentEmailText.replace(/\n/g, '<br>');
     modal.style.display = 'flex';
 };
@@ -483,27 +505,66 @@ function initEventListeners() {
     const btnGmail = document.getElementById('btn-gmail');
     if (btnGmail) {
         btnGmail.addEventListener('click', () => {
-            let nicheLabel = currentNiche.toLowerCase();
-            if (nicheLabel === 'all') {
-                nicheLabel = 'trade services';
-            } else if (nicheLabel === 'hvac / ac repair') {
-                nicheLabel = 'HVAC & AC repair';
-            } else if (nicheLabel === 'solar installers') {
-                nicheLabel = 'solar installation';
-            } else if (nicheLabel === 'roofing contractors') {
-                nicheLabel = 'roofing';
-            }
-            
-            const subjectInput = document.getElementById('setting-subject-input');
-            const defaultSubject = `Need a new website for your ${nicheLabel} business?`;
-            const subjectText = subjectInput ? subjectInput.value.replace("plumbing", nicheLabel) : defaultSubject;
-            
-            const subject = encodeURIComponent(subjectText);
+            const subject = encodeURIComponent(currentEmailSubject);
             const body = encodeURIComponent(currentEmailText);
             window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${currentOutreachLeadEmail}&su=${subject}&body=${body}`, '_blank');
             
             // Record in Outreach Logs
             logOutreachEvent(currentOutreachLeadName, currentOutreachLeadEmail, 'Opened Gmail Draft', 'Gmail');
+        });
+    }
+
+    // Send Pitch via Brevo API
+    const btnSendBrevo = document.getElementById('btn-send-brevo');
+    if (btnSendBrevo) {
+        btnSendBrevo.addEventListener('click', async () => {
+            const apiKey = localStorage.getItem('brevo_api_key') || '';
+            
+            if (!apiKey) {
+                alert('Please enter your Brevo API key in the Outreach tab under Settings first.');
+                return;
+            }
+            
+            btnSendBrevo.disabled = true;
+            btnSendBrevo.innerHTML = '<i data-lucide="loader-2" style="width:16px;height:16px;" class="animate-spin"></i> Sending...';
+            lucide.createIcons();
+            
+            try {
+                let apiUrl = '/api/send-email';
+                if (window.location.protocol === 'file:' || 
+                   ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '5000')) {
+                    apiUrl = 'http://127.0.0.1:5000/api/send-email';
+                }
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        api_key: apiKey,
+                        sender_name: 'Dinusha Pushparajah (SiteForge)',
+                        sender_email: 'info.siteforge101@gmail.com',
+                        to_email: currentOutreachLeadEmail,
+                        subject: currentEmailSubject,
+                        body: currentEmailText
+                    })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    alert('Email sent successfully via Brevo!');
+                    logOutreachEvent(currentOutreachLeadName, currentOutreachLeadEmail, 'Sent email via Brevo API', 'Brevo');
+                    document.getElementById('outreach-modal').style.display = 'none';
+                } else {
+                    alert('Failed to send email: ' + result.message);
+                }
+            } catch (err) {
+                alert('Error sending email: ' + err.message);
+            } finally {
+                btnSendBrevo.disabled = false;
+                btnSendBrevo.innerHTML = '<i data-lucide="send" style="width:16px;height:16px;"></i> Send Pitch via Brevo';
+                lucide.createIcons();
+            }
         });
     }
     
@@ -726,6 +787,21 @@ function initChromeSettings() {
     const themeRow = document.getElementById('row-theme-change');
     const profileSelect = document.getElementById('setting-profile-select');
     
+    // Load saved settings from local storage
+    const savedSubject = localStorage.getItem('outreach_subject');
+    const savedScore = localStorage.getItem('outreach_min_score');
+    const savedApiKey = localStorage.getItem('brevo_api_key');
+    
+    if (savedSubject && document.getElementById('setting-subject-input')) {
+        document.getElementById('setting-subject-input').value = savedSubject;
+    }
+    if (savedScore && document.getElementById('setting-score-input')) {
+        document.getElementById('setting-score-input').value = savedScore;
+    }
+    if (savedApiKey && document.getElementById('setting-brevo-api-key')) {
+        document.getElementById('setting-brevo-api-key').value = savedApiKey;
+    }
+    
     // 1. Profile Synchronization matching Dinusha Pushparajah
     function updateProfileUI(profile) {
         const profileName = document.getElementById('chrome-profile-name');
@@ -877,14 +953,18 @@ function initChromeSettings() {
         });
     }
     
-    // 5. Save Changes for Outreach Panel
+    // 5. Save Changes for Outreach Panel with localStorage persistence
     if (saveBtn) {
         saveBtn.addEventListener('click', () => {
             const subject = document.getElementById('setting-subject-input').value;
             const score = document.getElementById('setting-score-input').value;
+            const apiKey = document.getElementById('setting-brevo-api-key').value;
             
-            // Apply these configuration filters or store in memory (could also POST in real world)
-            alert(`MyLeads configuration saved successfully!\n\nSubject: "${subject}"\nMin Quality Score: ${score}`);
+            localStorage.setItem('outreach_subject', subject);
+            localStorage.setItem('outreach_min_score', score);
+            localStorage.setItem('brevo_api_key', apiKey);
+            
+            alert(`SiteForge configuration saved successfully!\n\nSubject: "${subject}"\nMin Quality Score: ${score}`);
         });
     }
     
