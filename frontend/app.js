@@ -158,30 +158,38 @@ function calculateScore(lead) {
 }
 
 // Helper to get localized pre-filled WhatsApp templates
-// Helper to get localized pre-filled WhatsApp templates in a spiral round-robin format
-function getWhatsAppMsg(country, name) {
-    const leadIndex = allLeadsCache.findIndex(l => (l.business_name || l.name) === name);
-    const templateIndex = leadIndex >= 0 ? (leadIndex % 10) : 0;
-    
-    const waTemplates = [
-        `Hi ${name}! I saw ${name} on Facebook. Love your work! I noticed you don't have a website yet. At SiteForge, we build affordable sites so local customers can find you on Google. Can I send a free homepage mock-up?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
-        `Hello ${name}! I'm Dinusha, CEO of SiteForge. I found your business profile and noticed you don't have your own website yet. A professional site gets you found on Google 24/7. Can I send you a free custom SiteForge design concept?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
-        `Hi ${name} Team! I found ${name} online and really love what you do. I noticed you don't have an active website. We at SiteForge build premium, fast websites that drive local bookings. Can I share a free live preview we designed for you?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
-        `Hi ${name}! I saw your local reviews and they are fantastic. I'm Dinusha, CEO of SiteForge. We specialize in building mobile-friendly websites for service providers. Would you like to see a free website layout draft for your business?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
-        `Hello ${name}! Did you know most local customers search Google before booking? I noticed ${name} doesn't have a website yet. At SiteForge, we make premium websites easy. Can I send you a free home page blueprint to check out?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
-        `Hi ${name}! I found ${name} on Facebook. I help local service businesses get more leads by building stunning custom websites. I've designed a free SiteForge homepage draft for you. Would you like me to send you the link?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
-        `Hi there ${name}! I saw your business page. Your service looks incredible, but you're missing out on Google search leads without a website. We build high-converting sites at SiteForge. Can I show you a free concept design?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
-        `Hello ${name} Team! This is Dinusha from SiteForge. I noticed you don't have a dedicated website. A professional site instantly upgrades your customer trust and Google ranking. Want to see a free website preview we pre-built for you?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
-        `Hi ${name}! Love your reviews! I'm the CEO of SiteForge. We build fast, beautiful websites that turn online visitors into paying customers. Would you be open to checking out a free homepage draft we created for ${name}?\n\n- Dinusha Pushparajah, CEO of SiteForge`,
-        `Hi ${name}! I came across your service. I noticed you don't have a website yet. At SiteForge, we build premium websites tailored specifically for trade and local services. Can I send you a free, no-obligation preview draft?\n\n- Dinusha Pushparajah, CEO of SiteForge`
+function getWhatsAppMsg(country, name, leadIndex) {
+    const templates = [
+        `Hi *${name}*! I saw your page and love your work. At SiteForge, we build affordable, professional websites for local businesses so customers can find you on Google too. Can I send you a free website mockup we made for you? 😊 - Dinusha Pushparajah, CEO of SiteForge`,
+        
+        `Hello! Found *${name}* online. You're doing amazing work, but without a Google-optimized website, many local clients can't find you. I'm Dinusha, CEO of SiteForge. We build high-speed, affordable websites that double your bookings. Shall I send you a free preview? 👍`,
+        
+        `Hi *${name}* Team! Love your posts. Did you know most people search Google first for local services? At SiteForge, we specialize in high-converting, mobile-friendly websites. I'd love to share a free, 1-minute mockup. - Dinusha, CEO of SiteForge`,
+        
+        `Hey there! I came across *${name}* and love your services. I noticed you don't have your own website domain yet. We build lightning-fast, custom websites at SiteForge that rank on Page 1 of Google. Open to seeing a free mockup? 😊 - Dinusha Pushparajah, CEO of SiteForge`,
+        
+        `Hi *${name}* Team! I specialize in launching high-converting booking funnels for local operators. Our platform, SiteForge, handles design, hosting, and SEO to double your call volume. Can I show you a free visual draft of your site? - Dinusha, CEO of SiteForge`,
+        
+        `Hello *${name}*! This is Dinusha, CEO of SiteForge. We help local service businesses stand out by building modern, automated scheduling websites. Would you be open to taking a 2-minute look at a free custom prototype we drew up for you?`,
+        
+        `Hi *${name}*! Homeowners search Google daily for services like yours. Without a professional website, they can't find you. At SiteForge, we design stunning, high-speed sites that build trust and bring in more jobs. Want to see a free mockup? - Dinusha Pushparajah, CEO of SiteForge`,
+        
+        `Hey *${name}* Team! I'm Dinusha Pushparajah, CEO of SiteForge. We build next-generation websites that load in under a second and capture missed search leads. I'd love to share a custom interactive preview with you for free! 👍`,
+        
+        `Hi *${name}*! Love your business reviews. A high-quality website is the #1 way to verify your credibility online. At SiteForge, we handle everything from design to Google search ranking. Interested in a free mockup? 😊 - Dinusha, CEO of SiteForge`,
+        
+        `Hello *${name}*! Quick question: is your business currently accepting new bookings? At SiteForge, we build simple, affordable, and highly effective booking sites for local companies. Let me know if you want to see a free website mockup! - Dinusha Pushparajah, CEO of SiteForge`
     ];
     
-    return waTemplates[templateIndex];
+    // Fallback to name length if leadIndex is not provided
+    const index = (typeof leadIndex === 'number') ? leadIndex : (name.length || 0);
+    const templateIndex = index % templates.length;
+    return templates[templateIndex];
 }
 
 // Handlers for logging non-email contacts
-window.recordWhatsAppAndOpen = function(name, link, country) {
-    const rawMsg = getWhatsAppMsg(country, name);
+window.recordWhatsAppAndOpen = function(name, link, country, leadIndex) {
+    const rawMsg = getWhatsAppMsg(country, name, leadIndex);
     logOutreachEvent(name, country, rawMsg, 'WhatsApp');
     window.open(link, '_blank');
 };
@@ -202,6 +210,7 @@ function renderLeads(leads) {
     }
     
     leads.forEach(lead => {
+        const leadIndex = allLeadsCache.indexOf(lead);
         const name = lead.business_name || lead.name || 'Unknown Business';
         const phone = lead.validated_phone || lead.phone || 'N/A';
         const website = lead.website_url || lead.website || 'None';
@@ -253,18 +262,18 @@ function renderLeads(leads) {
             `;
             if (hasEmail) {
                 actionButtonsHTML += `
-                    <button class="btn btn-primary" onclick="openOutreach('${name.replace(/'/g, "\\'")}', '${email}', '${country}')" style="flex: 1;" title="Email Pitch">
+                    <button class="btn btn-primary" onclick="openOutreach('${name.replace(/'/g, "\\'")}', '${email}', '${country}', ${leadIndex})" style="flex: 1;" title="Email Pitch">
                         <i data-lucide="send"></i>
                         Email
                     </button>
                 `;
             } else if (hasWhatsApp) {
                 const phoneDigits = phone.replace(/\D/g, '');
-                const rawMsg = getWhatsAppMsg(country, name);
+                const rawMsg = getWhatsAppMsg(country, name, leadIndex);
                 const waMsg = encodeURIComponent(rawMsg);
                 const waLink = `https://wa.me/${phoneDigits}?text=${waMsg}`;
                 actionButtonsHTML += `
-                    <button class="btn btn-primary" onclick="recordWhatsAppAndOpen('${name.replace(/'/g, "\\'")}', '${waLink}', '${country}')" style="background: #22c55e; border-color: #22c55e; flex: 1;" title="WhatsApp Pitch">
+                    <button class="btn btn-primary" onclick="recordWhatsAppAndOpen('${name.replace(/'/g, "\\'")}', '${waLink}', '${country}', ${leadIndex})" style="background: #22c55e; border-color: #22c55e; flex: 1;" title="WhatsApp Pitch">
                         <i data-lucide="message-square"></i>
                         WhatsApp
                     </button>
@@ -273,18 +282,18 @@ function renderLeads(leads) {
         } else {
             if (hasWhatsApp) {
                 const phoneDigits = phone.replace(/\D/g, '');
-                const rawMsg = getWhatsAppMsg(country, name);
+                const rawMsg = getWhatsAppMsg(country, name, leadIndex);
                 const waMsg = encodeURIComponent(rawMsg);
                 const waLink = `https://wa.me/${phoneDigits}?text=${waMsg}`;
                 actionButtonsHTML += `
-                    <button class="btn btn-primary" onclick="recordWhatsAppAndOpen('${name.replace(/'/g, "\\'")}', '${waLink}', '${country}')" style="background: #22c55e; border-color: #22c55e; flex: 1;">
+                    <button class="btn btn-primary" onclick="recordWhatsAppAndOpen('${name.replace(/'/g, "\\'")}', '${waLink}', '${country}', ${leadIndex})" style="background: #22c55e; border-color: #22c55e; flex: 1;">
                         <i data-lucide="message-square"></i>
                         WhatsApp
                     </button>
                 `;
                 if (hasEmail) {
                     actionButtonsHTML += `
-                        <button class="btn btn-primary" onclick="openOutreach('${name.replace(/'/g, "\\'")}', '${email}', '${country}')" style="flex: 1;" title="Email Pitch">
+                        <button class="btn btn-primary" onclick="openOutreach('${name.replace(/'/g, "\\'")}', '${email}', '${country}', ${leadIndex})" style="flex: 1;" title="Email Pitch">
                             <i data-lucide="send"></i>
                             Email
                         </button>
@@ -292,7 +301,7 @@ function renderLeads(leads) {
                 }
             } else if (hasEmail) {
                 actionButtonsHTML += `
-                    <button class="btn btn-primary" onclick="openOutreach('${name.replace(/'/g, "\\'")}', '${email}', '${country}')" style="flex: 1;">
+                    <button class="btn btn-primary" onclick="openOutreach('${name.replace(/'/g, "\\'")}', '${email}', '${country}', ${leadIndex})" style="flex: 1;">
                         <i data-lucide="send"></i>
                         Email Pitch
                     </button>
@@ -382,14 +391,14 @@ function updateStats(leads) {
     document.getElementById('stat-avg').textContent = `${avgScore}/10`;
 }
 
-// Global variables for current email draft and lead metadata
+// Global variable for current email text, subject, and lead metadata
 let currentEmailText = '';
 let currentEmailSubject = '';
 let currentOutreachLeadName = '';
 let currentOutreachLeadEmail = '';
 
-// Open Outreach Modal with Spiral Templates assigning
-window.openOutreach = function(name, email) {
+// Open Outreach Modal
+window.openOutreach = function(name, email, country, leadIndex) {
     currentOutreachLeadName = name;
     currentOutreachLeadEmail = email;
     
@@ -407,58 +416,58 @@ window.openOutreach = function(name, email) {
         nicheLabel = 'roofing';
     }
     
+    const signature = "Dinusha Pushparajah\nCEO of SiteForge";
+    
     const templates = [
         {
-            subject: `SiteForge Digital Audit: Website proposal for ${name}`,
-            body: `Hi ${name} Team,\n\nI noticed your business doesn't have an optimized website (or it's currently hard to find on mobile devices).\n\nSince most customers searching for ${nicheLabel} in your area are doing so on their phones, a modern, fast-loading website can instantly increase your bookings.\n\nAt SiteForge, we build high-converting websites specifically for ${nicheLabel} businesses. Would you be open to a quick chat to see how we could help you capture those missed leads?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+            subject: `Quick question regarding your website for ${name}`,
+            body: `Hi ${name} Team,\n\nI was searching for top-rated local services on my phone and came across your business, but noticed that your website isn't optimized for mobile devices (or you don't have one online yet).\n\nDid you know that over 70% of local searches for ${nicheLabel} happen on smartphones? At SiteForge, we specialize in building lightning-fast, mobile-first websites that turn visitors into paying customers.\n\nWould you be open to a 5-minute chat to see a free website mock-up we've prepared for ${name}?\n\nBest regards,\n${signature}`
         },
         {
-            subject: `Quick web question for ${name} from SiteForge`,
-            body: `Hello ${name} Team,\n\nI came across your profile and noticed that while your service is top-notch, you don't have a dedicated website listed online for customers to book directly.\n\nAt SiteForge, we design clean, modern websites that showcase your local ${nicheLabel} services and let clients book in seconds. We actually pre-built a professional design concept for ${name}.\n\nWould you like me to send you a link to your free SiteForge web preview?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+            subject: `Helping customers in your area find ${name} on Google`,
+            body: `Hello ${name},\n\nI was checking local listings on Google Maps for ${nicheLabel} and realized your business might be missing out on valuable nearby traffic because you don't have an active website linked.\n\nMost customers search Google first before making a booking. Our platform, SiteForge, builds high-ranking local websites specifically designed to get your business onto Page 1 of Google.\n\nCan I send you a free, interactive preview of what we can build for ${name}?\n\nCheers,\n${signature}`
         },
         {
-            subject: `Local Google Visibility Audit for ${name} | SiteForge`,
-            body: `Hi there,\n\nMy name is Dinusha Pushparajah and I'm the CEO of SiteForge. I noticed that when customers search for local ${nicheLabel} services online, ${name} doesn't have a website to show them.\n\nIn today's market, 87% of customers look at a website before booking a service. With SiteForge, we get your business fully set up with a premium, lightning-fast website that drives calls.\n\nCan I email you a free draft design of what your business website could look like?\n\nSincerely,\nDinusha Pushparajah\nCEO of SiteForge`
+            subject: `Are you losing ${nicheLabel} leads to local competitors?`,
+            body: `Hi there,\n\nI noticed that several other ${nicheLabel} providers in your area are capturing a large share of local search traffic. It looks like ${name} is doing fantastic work on Facebook, but you are missing out on Google searchers who need help immediately.\n\nAt SiteForge, we design modern, conversion-focused websites that position you as the premium choice in your market. We'd love to help you reclaim those bookings.\n\nLet me know if you have a few minutes this week to look at some custom ideas we drew up for you!\n\nThanks,\n${signature}`
         },
         {
-            subject: `Proposal: Mobile-Optimized Website for ${name} by SiteForge`,
-            body: `Hi ${name} Team,\n\nI noticed that ${name} is highly recommended but doesn't have a dedicated web presence yet.\n\nOur team at SiteForge builds high-converting, mobile-first websites specifically for local ${nicheLabel} specialists. We handle everything: design, copy, hosting, and Google setup.\n\nWould you be interested in a free, 5-minute SiteForge web preview tailored for your business?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+            subject: `We built a custom website draft for ${name}`,
+            body: `Hi ${name} Team,\n\nMy name is Dinusha and I'm the CEO of SiteForge. My design team and I love your local reputation, so we went ahead and created a custom, modern website prototype for ${name}.\n\nIt's fully optimized for mobile devices, loads in under a second, and includes a direct booking form to double your call volume.\n\nWe'd love to show it to you for free, with zero obligations. Would you be open to taking a quick look?\n\nBest,\n${signature}`
         },
         {
-            subject: `Partnership: Website launch proposal for ${name}`,
-            body: `Hello ${name},\n\nHope you are doing well. I lead the development team at SiteForge. We help local ${nicheLabel} businesses establish stunning digital footprints that stand out.\n\nI noticed ${name} is highly active but lacks a dedicated website. We've put together a modern, premium design draft specifically for your brand.\n\nLet me know if I can send you a free live preview of your SiteForge draft!\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+            subject: `Website performance & search optimization report for ${name}`,
+            body: `Hello ${name},\n\nI ran a quick digital audit on ${nicheLabel} businesses in your city. I noticed your business has a great social presence but lacks a high-speed, search-optimized website.\n\nIn today's market, speed is everything. Slow or non-existent sites lose up to 50% of their traffic before the page even loads. At SiteForge, we build next-generation websites that load instantly and capture every lead.\n\nI'd love to share the results of our audit and show you how we can grow your bookings. Are you available for a brief chat?\n\nKind regards,\n${signature}`
         },
         {
-            subject: `Capture more online leads for ${name} - SiteForge`,
-            body: `Hi ${name} Team,\n\nA lot of local customers are searching Google for ${nicheLabel} services in your area, but they can't find ${name} because you don't have an active website.\n\nAt SiteForge, we bridge this gap by building premium websites that get found on Google and convert visitors into clients. We have created a free sample design for you.\n\nWould you like us to send you the free mock-up?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+            subject: `Converting your Facebook fans into booked jobs for ${name}`,
+            body: `Hi ${name} Team,\n\nI came across your Facebook page and love the work you are sharing! However, I noticed you don't have a dedicated website where clients can book your ${nicheLabel} services directly.\n\nRelying solely on social media means you're missing out on the massive volume of high-intent search traffic on Google. SiteForge builds high-converting landing pages that seamlessly sync with your social media to automate your booking funnel.\n\nCould I show you a quick example of how this would look for ${name}?\n\nWarmly,\n${signature}`
         },
         {
-            subject: `Upgrade your digital presence: ${name} x SiteForge`,
-            body: `Hi there,\n\nI was looking at local ${nicheLabel} service providers and found ${name}. Your reviews look spectacular, but a professional website would take your growth to the next level.\n\nAt SiteForge, we craft beautiful, high-speed websites that act as your 24/7 digital salesperson. We've pre-designed a custom homepage concept for your business.\n\nCan I share the free SiteForge live draft with you this week?\n\nWarm regards,\nDinusha Pushparajah\nCEO of SiteForge`
+            subject: `Build instant trust with a premium website for ${name}`,
+            body: `Hello,\n\nWhen local homeowners or businesses look for a trusted ${nicheLabel} professional, a high-quality website is the first thing they look for to verify your credibility.\n\nAt SiteForge, we specialize in building highly professional, trustworthy websites that showcase your local reviews, licenses, and recent projects beautifully.\n\nLet us help ${name} stand out as the most trusted brand in your market. Would you be open to a quick call this week?\n\nBest,\n${signature}`
         },
         {
-            subject: `SiteForge Web Design: Elevating ${name}`,
-            body: `Hello ${name} Team,\n\nMany of your potential clients are looking for ${nicheLabel} services on their phones, and a professional website is the best way to earn their immediate trust.\n\nI'm the CEO of SiteForge, and we specialize in building affordable, secure, and modern websites for local service specialists. We have drafted a stunning homepage concept for ${name}.\n\nCould I send over a free, no-obligation link to your SiteForge preview?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+            subject: `Business website partnership opportunity - ${name}`,
+            body: `Hi ${name},\n\nI'll keep this short. I help local ${nicheLabel} businesses get more customers by launching simple, elegant, and highly effective websites.\n\nThrough our platform, SiteForge, we handle everything—from design and hosting to copywriting and Google SEO. You don't have to lift a finger, and it's incredibly affordable.\n\nWould you be open to receiving a free, 100% custom website mock-up for ${name}? Let me know!\n\nThanks,\n${signature}`
         },
         {
-            subject: `Increase your local bookings at ${name} | SiteForge`,
-            body: `Hi ${name},\n\nDid you know that having a dedicated business website can increase local inquiry volume by up to 40%? I noticed ${name} doesn't have one online yet.\n\nAt SiteForge, we make it easy and affordable to get a professional web presence. Our team has already created a free ${nicheLabel} homepage blueprint for your business.\n\nAre you open to seeing this free SiteForge design sample?\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+            subject: `Establishing ${name} as the local authority in ${nicheLabel}`,
+            body: `Hello Team,\n\nEvery day, dozens of people in your local area search Google for a reliable ${nicheLabel} contractor. Without a professional website, ${name} is practically invisible to them.\n\nAt SiteForge, we help businesses like yours claim their spot as the local authority. We build fast, beautiful websites that rank highly on Google and make it easy for customers to choose you.\n\nI would love to send you a quick, free visual mockup of what SiteForge can do for your business. Interested?\n\nBest regards,\n${signature}`
         },
         {
-            subject: `Custom Web Proposal for ${name} from SiteForge`,
-            body: `Hello ${name} Team,\n\nI came across ${name} today and wanted to reach out. We help local ${nicheLabel} service businesses stand out online by building stunning, fast, and secure websites.\n\nI noticed you don't have your own website yet. Our SiteForge team has designed a custom homepage preview for you to review for free.\n\nLet me know if I can email you the live link!\n\nBest regards,\nDinusha Pushparajah\nCEO of SiteForge`
+            subject: `Quick call regarding your booking system at ${name}`,
+            body: `Hi ${name},\n\nMy name is Dinusha Pushparajah, CEO of SiteForge. We build modern, automated booking websites specifically for local ${nicheLabel} operators.\n\nOur custom sites make it simple for clients to request quotes, book appointments, and pay online, saving you hours of administrative work.\n\nI'd love to show you a quick 2-minute demo of how this booking funnel can bring in more high-quality jobs for ${name}. Do you have time for a short call?\n\nSincerely,\n${signature}`
         }
     ];
     
-    // Pick a template sequentially in a round-robin "spiral" based on lead index in global cache
-    const leadIndex = allLeadsCache.findIndex(l => (l.business_name || l.name) === name);
-    const templateIndex = leadIndex >= 0 ? (leadIndex % 10) : 0;
+    // Pick a template in a cyclical "spiral" manner based on leadIndex (or name length as fallback)
+    const index = (typeof leadIndex === 'number') ? leadIndex : (name.length || 0);
+    const templateIndex = index % templates.length;
     
-    const selectedTemplate = templates[templateIndex];
-    currentEmailText = selectedTemplate.body;
-    currentEmailSubject = selectedTemplate.subject;
+    currentEmailText = templates[templateIndex].body;
+    currentEmailSubject = templates[templateIndex].subject;
     
-    document.getElementById('modal-title').textContent = currentEmailSubject;
     document.getElementById('email-body').innerHTML = currentEmailText.replace(/\n/g, '<br>');
     modal.style.display = 'flex';
 };
@@ -505,66 +514,26 @@ function initEventListeners() {
     const btnGmail = document.getElementById('btn-gmail');
     if (btnGmail) {
         btnGmail.addEventListener('click', () => {
-            const subject = encodeURIComponent(currentEmailSubject);
+            let nicheLabel = currentNiche.toLowerCase();
+            if (nicheLabel === 'all') {
+                nicheLabel = 'trade services';
+            } else if (nicheLabel === 'hvac / ac repair') {
+                nicheLabel = 'HVAC & AC repair';
+            } else if (nicheLabel === 'solar installers') {
+                nicheLabel = 'solar installation';
+            } else if (nicheLabel === 'roofing contractors') {
+                nicheLabel = 'roofing';
+            }
+            
+            const defaultSubject = `Need a new website for your ${nicheLabel} business?`;
+            const subjectText = currentEmailSubject || defaultSubject;
+            
+            const subject = encodeURIComponent(subjectText);
             const body = encodeURIComponent(currentEmailText);
             window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${currentOutreachLeadEmail}&su=${subject}&body=${body}`, '_blank');
             
             // Record in Outreach Logs
             logOutreachEvent(currentOutreachLeadName, currentOutreachLeadEmail, 'Opened Gmail Draft', 'Gmail');
-        });
-    }
-
-    // Send Pitch via Brevo API
-    const btnSendBrevo = document.getElementById('btn-send-brevo');
-    if (btnSendBrevo) {
-        btnSendBrevo.addEventListener('click', async () => {
-            const apiKey = localStorage.getItem('brevo_api_key') || '';
-            
-            if (!apiKey) {
-                alert('Please enter your Brevo API key in the Outreach tab under Settings first.');
-                return;
-            }
-            
-            btnSendBrevo.disabled = true;
-            btnSendBrevo.innerHTML = '<i data-lucide="loader-2" style="width:16px;height:16px;" class="animate-spin"></i> Sending...';
-            lucide.createIcons();
-            
-            try {
-                let apiUrl = '/api/send-email';
-                if (window.location.protocol === 'file:' || 
-                   ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '5000')) {
-                    apiUrl = 'http://127.0.0.1:5000/api/send-email';
-                }
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        api_key: apiKey,
-                        sender_name: 'Dinusha Pushparajah (SiteForge)',
-                        sender_email: 'info.siteforge101@gmail.com',
-                        to_email: currentOutreachLeadEmail,
-                        subject: currentEmailSubject,
-                        body: currentEmailText
-                    })
-                });
-                
-                const result = await response.json();
-                if (result.success) {
-                    alert('Email sent successfully via Brevo!');
-                    logOutreachEvent(currentOutreachLeadName, currentOutreachLeadEmail, 'Sent email via Brevo API', 'Brevo');
-                    document.getElementById('outreach-modal').style.display = 'none';
-                } else {
-                    alert('Failed to send email: ' + result.message);
-                }
-            } catch (err) {
-                alert('Error sending email: ' + err.message);
-            } finally {
-                btnSendBrevo.disabled = false;
-                btnSendBrevo.innerHTML = '<i data-lucide="send" style="width:16px;height:16px;"></i> Send Pitch via Brevo';
-                lucide.createIcons();
-            }
         });
     }
     
@@ -787,21 +756,6 @@ function initChromeSettings() {
     const themeRow = document.getElementById('row-theme-change');
     const profileSelect = document.getElementById('setting-profile-select');
     
-    // Load saved settings from local storage
-    const savedSubject = localStorage.getItem('outreach_subject');
-    const savedScore = localStorage.getItem('outreach_min_score');
-    const savedApiKey = localStorage.getItem('brevo_api_key');
-    
-    if (savedSubject && document.getElementById('setting-subject-input')) {
-        document.getElementById('setting-subject-input').value = savedSubject;
-    }
-    if (savedScore && document.getElementById('setting-score-input')) {
-        document.getElementById('setting-score-input').value = savedScore;
-    }
-    if (savedApiKey && document.getElementById('setting-brevo-api-key')) {
-        document.getElementById('setting-brevo-api-key').value = savedApiKey;
-    }
-    
     // 1. Profile Synchronization matching Dinusha Pushparajah
     function updateProfileUI(profile) {
         const profileName = document.getElementById('chrome-profile-name');
@@ -953,17 +907,13 @@ function initChromeSettings() {
         });
     }
     
-    // 5. Save Changes for Outreach Panel with localStorage persistence
+    // 5. Save Changes for Outreach Panel
     if (saveBtn) {
         saveBtn.addEventListener('click', () => {
             const subject = document.getElementById('setting-subject-input').value;
             const score = document.getElementById('setting-score-input').value;
-            const apiKey = document.getElementById('setting-brevo-api-key').value;
             
-            localStorage.setItem('outreach_subject', subject);
-            localStorage.setItem('outreach_min_score', score);
-            localStorage.setItem('brevo_api_key', apiKey);
-            
+            // Apply these configuration filters or store in memory (could also POST in real world)
             alert(`SiteForge configuration saved successfully!\n\nSubject: "${subject}"\nMin Quality Score: ${score}`);
         });
     }
@@ -996,6 +946,7 @@ function renderDirectoryLeads(leads) {
     }
     
     tableBody.innerHTML = leads.map(lead => {
+        const leadIndex = allLeadsCache.indexOf(lead);
         const name = lead.business_name || lead.name || 'Unknown Business';
         const phone = lead.validated_phone || lead.phone || 'N/A';
         const website = lead.website_url || lead.website || 'None';
@@ -1029,18 +980,18 @@ function renderDirectoryLeads(leads) {
         } else {
             if (hasWhatsApp) {
                 const phoneDigits = phone.replace(/\D/g, '');
-                const rawMsg = getWhatsAppMsg(country, name);
+                const rawMsg = getWhatsAppMsg(country, name, leadIndex);
                 const waMsg = encodeURIComponent(rawMsg);
                 const waLink = `https://wa.me/${phoneDigits}?text=${waMsg}`;
                 directoryActionHTML = `
-                    <button class="btn btn-primary" style="padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.25rem; background: #22c55e; border-color: #22c55e;" onclick="recordWhatsAppAndOpen('${name.replace(/'/g, "\\'")}', '${waLink}', '${country}')">
+                    <button class="btn btn-primary" style="padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.25rem; background: #22c55e; border-color: #22c55e;" onclick="recordWhatsAppAndOpen('${name.replace(/'/g, "\\'")}', '${waLink}', '${country}', ${leadIndex})">
                         <i data-lucide="message-square" style="width:12px; height:12px;"></i>
                         WhatsApp
                     </button>
                 `;
             } else if (hasEmail) {
                 directoryActionHTML = `
-                    <button class="btn btn-primary" style="padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.25rem;" onclick="openOutreach('${name.replace(/'/g, "\\'")}', '${email}', '${country}')">
+                    <button class="btn btn-primary" style="padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.25rem;" onclick="openOutreach('${name.replace(/'/g, "\\'")}', '${email}', '${country}', ${leadIndex})">
                         <i data-lucide="send" style="width:12px; height:12px;"></i>
                         Send Pitch
                     </button>
